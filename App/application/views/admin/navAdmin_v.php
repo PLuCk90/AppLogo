@@ -42,7 +42,7 @@
 				      		</ul>  	
 			      	  </li>
 				      <li class="has-dropdown">
-				        <a href="#" class="small fi-widget" style="font-size:1.5em;color:white"></a>
+				        <a href="#" class="small fi-widget" style="font-size:1.5em;"></a>
 				        <ul class="dropdown">
 				        	<li>
 				        		
@@ -55,5 +55,5 @@
 		
 </nav>
 </div>
-<div class="row panel" style="padding:0;height:50em;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
+<div class="row panel" style="padding:0;height:40em;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
                 

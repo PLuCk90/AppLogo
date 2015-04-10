@@ -118,7 +118,7 @@ $include-html-global-classes: $include-html-classes;
  $black       : #000000;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
+$primary-color: #FF7E28;
 // $secondary-color: #e7e7e7;
 $alert-color: red;						//#f04124;
 // $success-color: #43AC6A;
@@ -1283,10 +1283,10 @@ $alert-color: red;						//#f04124;
 
 // These control the table head styles
 // $table-head-bg: $white-smoke;
- $table-head-font-size: rem-calc(12);
+   $table-head-font-size: rem-calc(10);
 // $table-head-font-color: $jet;
 // $table-head-font-weight: $font-weight-bold;
-// $table-head-padding: rem-calc(8 10 10);
+   $table-head-padding: rem-calc(8 8 8);
 
 // These control the table foot styles
 // $table-foot-bg: $table-head-bg;
@@ -1305,7 +1305,7 @@ $alert-color: red;						//#f04124;
 // $table-row-padding: rem-calc(9 10);
 // $table-row-font-size: rem-calc(14);
 // $table-row-font-color: $jet;
-// $table-line-height: rem-calc(18);
+ $table-line-height: rem-calc(22);
 
 // These are for controlling the layout, display and margin of tables
 // $table-layout: auto;
@@ -1399,9 +1399,9 @@ $alert-color: red;						//#f04124;
 // $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;
 // $topbar-link-font-size: rem-calc(13);
-// $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg: $topbar-bg;
- 	$topbar-link-bg-hover: $primary-color;
+ //$topbar-link-hover-lightness: -10%; // Darken by 10%
+// $topbar-link-bg: $primary-color;
+$topbar-link-bg-hover: $primary-color
 // $topbar-link-bg-color-hover: $charcoal;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
@@ -1414,7 +1414,7 @@ $alert-color: red;						//#f04124;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: $oil;
+// $topbar-dropdown-bg: red;
 // $topbar-dropdown-link-color: $white;
 // $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
 // $topbar-dropdown-link-bg: $oil;

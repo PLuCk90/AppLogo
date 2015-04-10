@@ -13,5 +13,10 @@
     <!--<script src="<?php echo base_url();?>assets/js/foundation/foundation.offcanvas.js"></script>-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/foundation-icons/foundation-icons.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/stylesheets/style.css" />
+    <script src="<?php echo base_url();?>assets/bower_components/foundation/js/foundation.min.js"></script>
+    <div class="row">
+      <div class="small-12 colmuns">
+      </div>
+    </div>
   </head>
-  <body>
+  <body style="background-color:#EEEEEE;">

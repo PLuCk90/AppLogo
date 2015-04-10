@@ -20,7 +20,7 @@ $lang['users_table_header'] = "Liste des utilisateurs";
 $lang['firstname_label'] = "Nom";
 $lang['name_label'] = "Prénom";
 $lang['mail_label'] = "Adresse mail";
-$lang['phone_label'] = "Numéro de téléphone";
+$lang['phone_label'] = "Téléphone";
 $lang['rights_label'] = "Droits";
 $lang['operations_label'] = "Opérations";
 $lang['update_label'] = "Modifier";
@@ -29,11 +29,15 @@ $lang['del_alert_title'] = "Êtes vous sûr ?";
 $lang['del_alert_message'] = "Cette action va supprimer définitivement le compte utilisateur et tout ses informations. Continuer ?";
 $lang['del_alert_close'] = "Annuler";
 $lang['del_alert_continue'] = "Supprimer";
-$lang['add_user_label'] = "Nouvel utilisateur";
+$lang['add_user_label'] = "Nouveau";
 $lang['search_label'] = "Rechercher";
 $lang['online_label'] = "En ligne";
 $lang['active_label'] = "Activation";
-$lang['language_label'] = "language_label";
+$lang['language_label'] = "Langue";
+$lang['Desact_alert_title'] = "Attention!";
+$lang['Desact_alert_message'] = "Vous êtes en train de désactiver votre propre compte. êtes vous sur de vouloir continuer ?";
+$lang['Desact_alert_continue'] = "Désactiver";
+$lang['Desact_alert_close'] = "Annuler";
 
 //--alterUser
 $lang['update_form_header'] = "Modifier les infos";
@@ -43,3 +47,10 @@ $lang['rights_dropdown_header'] = "Sélectionner un type";
 //--validation_alterUser (method)
 $lang['phone_validation_message'] = "Le %s n\'est pas correct";
 $lang['dropdown_validation_message'] = "Veuillez faire un choix";
+
+
+//--activation_alert_v
+$lang['act_alert_title'] = "Impossible d'accéder au site !";
+$lang['act_alert_message'] = "Votre compte est désactivé. veuillez contacter l'administrateur réseau.";
+$lang['act_alert_close'] = "";
+$lang['act_alert_continue'] = "Ok";

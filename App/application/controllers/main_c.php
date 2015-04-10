@@ -71,5 +71,12 @@ class Main_c extends CI_Controller {
 	        $this->index();
 	    }
 
+  public function display_activation_alert()
+  {
+    $this->load->view('head_v');
+    $this->load->view('activation_alert_v');
+    $this->load->view('footer_v');
+  }
+
 }
 ?>

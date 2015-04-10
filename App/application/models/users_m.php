@@ -4,7 +4,7 @@ class Users_m extends CI_Model {
 
 	public function check_connection($data)
 	{
-	        $sql = "SELECT u.id_user,u.name_user,u.firstname_user,u.mail_user,u.phone_user,r.description_right,l.description_language FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
+	        $sql = "SELECT u.id_user,u.name_user,u.firstname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
 	        $query=$this->db->query($sql); 
 	        if($query->num_rows()==1)
 	        {
@@ -18,7 +18,7 @@ class Users_m extends CI_Model {
 
     public function getAllUsers()
     {
- 	 $this->db->select('u.id_user,u.name_user,u.firstname_user,u.mail_user,u.password_user,u.phone_user,r.description_right,l.description_language');
+ 	 $this->db->select('u.id_user,u.name_user,u.firstname_user,u.mail_user,u.password_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
 	 $this->db->from('User u, Right_u r, Language l');
 	 $this->db->where('r.id_right = u.id_right_user AND u.id_language_user = l.id_language');
 

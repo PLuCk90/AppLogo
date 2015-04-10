@@ -2,22 +2,22 @@
 
 
 ?>
-<div class="panel small-10 columns" style="height:80em;" >
+<div class="panel small-10 columns" style="height:40em;" >
 	<div class="row" style="">
 			<font>
 			<table class="small-12" >
-				<caption><?php echo lang('users_table_header');?></caption>
+				<caption ><?php echo lang('users_table_header');?></caption>
 				<thead>
 					<tr>
-						<th><?php echo lang('online_label');?></th>
-						<th><?php echo lang('firstname_label');?></th>
-						<th><?php echo lang('name_label');?></th>
-						<th><?php echo lang('mail_label');?></th>
-						<th><?php echo lang('phone_label');?></th>
-						<th><?php echo lang('language_label');?></th>
-						<th><?php echo lang('rights_label');?></th>
-						<th><?php echo lang('active_label');?></th>
-						<th><?php echo lang('operations_label');?></th>
+						<th width="100em"><?php echo lang('online_label');?></th>
+						<th width="100em"><?php echo lang('firstname_label');?></th>
+						<th width="100em"><?php echo lang('name_label');?></th>
+						<th width="100em"><?php echo lang('mail_label');?></th>
+						<th width="100em"><?php echo lang('phone_label');?></th>
+						<th width="110em"><?php echo lang('language_label');?></th>
+						<th width="50em"><?php echo lang('rights_label');?></th>
+						<th width="50em"><?php echo lang('active_label');?></th>
+						<th width="100em"><?php echo lang('operations_label');?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,7 +39,7 @@
 								<td><?= $value->mail_user; ?></td>
 								<td><?= $value->phone_user; ?></td>
 								<td> 
-									<a href="#" data-options="is_hover:true" class="tiny" data-dropdown="langDrop<?php echo hash("sha256",$value->id_user,FALSE)?>" style="font-size:1.5em;margin:0;padding:13px">
+									<a href="#" data-options="is_hover:true" class="tiny" data-dropdown="langDrop<?php echo hash("sha256",$value->id_user,FALSE)?>" style="font-size:1em;margin-left:15px;">
 									<?php 
 									if(isset($value->description_language)){print_r("<img height=\"12.5em\" width=\"12.5em\" src=\"".base_url()."/assets/img/flags/".$value->description_language.".png\" alt =\"".$value->description_language."\">");}
 									?>
@@ -58,8 +58,16 @@
 								<td><?= $value->description_right; ?></td>
 								<td>
 									<div class="switch round">
-  										<input id="<?php echo hash("sha256",$value->mail_user,FALSE); ?>" type="checkbox">
-  										<label for="<?php echo hash("sha256",$value->mail_user,FALSE); ?>"></label>
+  										<input id="activation<?php echo hash("sha256",$value->id_user,FALSE); ?>" type="checkbox" 
+  										<?php if ($value->activation_user == "1"){echo "checked";} ?> onchange="activateUser('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>','<?php echo $this->session->userdata('id_user');?>','<?php echo $value->id_user ?>','#activation<?php echo hash("sha256",$value->id_user,FALSE); ?>','<?php echo base_url(); ?>')"/>
+  										<label for="activation<?php echo hash("sha256",$value->id_user,FALSE); ?>"></label>
+
+  										<div id="DesactAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>" class="reveal-modal" data-reveal aria-labelledby="DesactAlertTitle" aria-hidden="true" role="dialog">
+										  <h2 id="DesactAlertTitle"><?php echo lang('Desact_alert_title');?></h2>
+										  <p><?php echo lang('Desact_alert_message'); ?></p>
+										  <p><a class="alert button" onclick="$('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE);?>').foundation('reveal', 'close');activationRequest('<?php echo $value->id_user ?>','#activation<?php echo hash("sha256",$value->id_user,FALSE); ?>','<?php echo base_url(); ?>');"><?php echo lang('Desact_alert_continue');?></a>
+										   <a href="<?php echo site_url("admin_c/display_users");?>" class='close secondary button' onclick="$('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE);?>').foundation('reveal', 'close');"><?php echo lang('Desact_alert_close');?></a></p>
+										</div>
 									</div>
 								</td>
 								<td>
@@ -83,7 +91,7 @@
 	</div>
 </div>
 
-<div class="panel small-2 columns" style="height:80em;">
+<div class="panel small-2 columns" style="height:40em;">
 	<div class="row">
 		<a href="<?php echo site_url("admin_c/addUser")."/".$value->id_user; ?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
 	</div>

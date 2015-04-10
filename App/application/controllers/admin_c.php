@@ -13,6 +13,11 @@ class Admin_c extends CI_Controller {
 
     public function redirection()
     {
+        //print_r($this->session->userdata('activation_user'));
+        if($this->session->userdata('activation_user')=='0'){
+        
+        redirect('main_c/display_activation_alert'); 
+        }
     	if($this->session->userdata('description_right')!='admin'){
         redirect('main_c');
         }
@@ -38,6 +43,7 @@ class Admin_c extends CI_Controller {
 
     public function display_admin_main($data=null)
     {
+        $this->redirection();
     	$this->load->view('head_v');
     	$data['title']="Panneau d'administration";
         $this->load->view('admin/navAdmin_v');  
@@ -143,6 +149,21 @@ class Admin_c extends CI_Controller {
         }
         $this->display_users();
 
+    }
+
+    public function activateUser($id,$state)
+    {
+        
+        //print_r('id : '.$id);
+        //print_r('session_id : '.$this->session->userdata('id_user'));
+        if($id == $this->session->userdata('id_user')){
+        $array= array('activation_user'=>$state);
+        //print_r('disbled : '.$this->session->userdata('activation_user') );
+        $this->session->set_userdata($array); 
+        }
+        $data = array('activation_user'=>$state);
+        $this->users_m->UpdateUser($id,$data);
+        //redirect('admin_c/display_users');
     }
 
     
