@@ -10,7 +10,7 @@
 				<thead>
 					<tr>
 						<th width="100em"><?php echo lang('online_label');?></th>
-						<th width="100em"><?php echo lang('firstname_label');?></th>
+						<th width="100em"><?php echo lang('lastname_label');?></th>
 						<th width="100em"><?php echo lang('name_label');?></th>
 						<th width="100em"><?php echo lang('mail_label');?></th>
 						<th width="100em"><?php echo lang('phone_label');?></th>
@@ -34,7 +34,7 @@
 								?>
 								<td id="<?php echo hash("sha256",$value->id_user,FALSE); ?>"></td>
 								<script>display_online_users('<?php echo $online;?>','#<?php echo hash("sha256",$value->id_user,FALSE);?>','<?php echo base_url();?>')</script>
-								<td><?php echo $value->firstname_user; ?></td>
+								<td><?php echo $value->lastname_user; ?></td>
 								<td><?= $value->name_user; ?></td>
 								<td><?= $value->mail_user; ?></td>
 								<td><?= $value->phone_user; ?></td>
@@ -55,7 +55,7 @@
 										<?php endforeach; ?>
 						  			</ul>
 								</td>
-								<td><?= $value->description_right; ?></td>
+								<td><?= ucfirst ($value->description_right); ?></td>
 								<td>
 									<div class="switch round">
   										<input id="activation<?php echo hash("sha256",$value->id_user,FALSE); ?>" type="checkbox" 
@@ -65,7 +65,7 @@
   										<div id="DesactAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>" class="reveal-modal" data-reveal aria-labelledby="DesactAlertTitle" aria-hidden="true" role="dialog">
 										  <h2 id="DesactAlertTitle"><?php echo lang('Desact_alert_title');?></h2>
 										  <p><?php echo lang('Desact_alert_message'); ?></p>
-										  <p><a class="alert button" onclick="$('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE);?>').foundation('reveal', 'close');activationRequest('<?php echo $value->id_user ?>','#activation<?php echo hash("sha256",$value->id_user,FALSE); ?>','<?php echo base_url(); ?>');"><?php echo lang('Desact_alert_continue');?></a>
+										  <p><a class="alert button" onclick="$('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE);?>').foundation('reveal', 'close');activationRequest('<?php echo $value->id_user ?>','#activation<?php echo hash("sha256",$value->id_user,FALSE); ?>','<?php echo base_url(); ?>',true);"><?php echo lang('Desact_alert_continue');?></a>
 										   <a href="<?php echo site_url("admin_c/display_users");?>" class='close secondary button' onclick="$('#DesactAlert<?php echo hash("sha256",$value->id_user,FALSE);?>').foundation('reveal', 'close');"><?php echo lang('Desact_alert_close');?></a></p>
 										</div>
 									</div>
@@ -93,7 +93,7 @@
 
 <div class="panel small-2 columns" style="height:40em;">
 	<div class="row">
-		<a href="<?php echo site_url("admin_c/addUser")."/".$value->id_user; ?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
+		<a href="<?php echo site_url("admin_c/createUser")."/".$value->id_user; ?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
 	</div>
 	<div class="row">
 		<div class="row collapse postfix-round">

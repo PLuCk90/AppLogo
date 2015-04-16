@@ -17,7 +17,7 @@ $lang['logout_label'] = "Log out";
 
 //--manageUsers
 $lang['users_table_header'] = "Users";
-$lang['firstname_label'] = "Firstname";
+$lang['lastname_label'] = "Lastname";
 $lang['name_label'] = "Name";
 $lang['mail_label'] = "E-mail";
 $lang['phone_label'] = "Phone number";
@@ -53,4 +53,24 @@ $lang['act_alert_title'] = "Unable to access the site!";
 $lang['act_alert_message'] = "Your account has been desctivated. Please contact administrator.";
 $lang['act_alert_close'] = "";
 $lang['act_alert_continue'] = "Ok";
+
+//--display_createUser
+$lang['create_form_header'] = "Create a new user";
+$lang['create_label'] = "Create";
+$lang['lang_dropdown_header'] = "Choose a default language";
+$lang['lang_label'] = "Language";
+
+//--validation_createUser (method)
+$lang['cre_alert_title'] = "Account activation";
+$lang['cre_alert_message'] = "Do you want to activate this account right now ?";
+$lang['cre_alert_close'] = "No";
+$lang['cre_alert_continue'] = "Yes";
+
+//--sendCreationMail
+$lang['subject_mail_account_creation'] = "Account creation confirmation";
+$lang['message_mail_account_creation_1'] = "Hello ";
+$lang['message_mail_account_creation_2'] = ", \n\nYour account on AppLogo has been created.\nThis is your login informations : \n";
+$lang['message_mail_account_creation_3'] = "Login : ";
+$lang['message_mail_account_creation_4'] = "\nPassword : ";
+$lang['message_mail_account_creation_5'] = "\n\nWe invite you to change default password right from your first log in.\n\n-- Don't reply this message --\nAdministrator";
 

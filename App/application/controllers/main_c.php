@@ -6,6 +6,7 @@ class Main_c extends CI_Controller {
         $this->load->model('users_m');
         $this->load->helper(array('form','url','text','string'));
         $this->load->library(array('session','form_validation','email'));
+        $this->users_m->check_language();
     }
 
     public function check_right()
@@ -76,6 +77,7 @@ class Main_c extends CI_Controller {
     $this->load->view('head_v');
     $this->load->view('activation_alert_v');
     $this->load->view('footer_v');
+    
   }
 
 }

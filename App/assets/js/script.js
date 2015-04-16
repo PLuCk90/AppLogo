@@ -19,7 +19,11 @@ function activateUser(id_alert,id_session,id,id_state,url){
   else{activationRequest(id,id_state,url);}
 }
 
-function activationRequest(id,id_state,url)
+function alertCreateUser(){
+    $('#creAlert').foundation('reveal', 'open');
+}
+
+function activationRequest(id,id_state,url,self)
 {
     if($(id_state).is(':checked')){
        state = 1;
@@ -32,7 +36,8 @@ function activationRequest(id,id_state,url)
     $.ajax({
     type: "POST",
     url: url + "index.php/admin_c/activateUser/"+id+"/"+state,
-    success: function(res){window.location.replace(url+"index.php/admin_c/display_users")}});
+    success: function(res){if(self==true){window.location.replace(url+"index.php/admin_c/display_users");}
+  }});
 }
 
 function displayActAlert()

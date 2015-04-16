@@ -17,7 +17,7 @@ $lang['logout_label'] = "Déconnexion";
 
 //--manageUsers
 $lang['users_table_header'] = "Liste des utilisateurs";
-$lang['firstname_label'] = "Nom";
+$lang['lastname_label'] = "Nom";
 $lang['name_label'] = "Prénom";
 $lang['mail_label'] = "Adresse mail";
 $lang['phone_label'] = "Téléphone";
@@ -54,3 +54,24 @@ $lang['act_alert_title'] = "Impossible d'accéder au site !";
 $lang['act_alert_message'] = "Votre compte est désactivé. veuillez contacter l'administrateur réseau.";
 $lang['act_alert_close'] = "";
 $lang['act_alert_continue'] = "Ok";
+
+//--display_createUser
+$lang['create_form_header'] = "Créer un nouvel utilisateur";
+$lang['create_label'] = "Créer";
+$lang['lang_dropdown_header'] = "Sélectionner une langue par défaut";
+$lang['lang_label'] = "Langue";
+
+
+//--validation_createUser (method)
+$lang['cre_alert_title'] = "Activation du compte";
+$lang['cre_alert_message'] = "Voulez vous activer ce compte utilisateur dès maintenant ?";
+$lang['cre_alert_close'] = "Non";
+$lang['cre_alert_continue'] = "Oui";
+
+//--sendCreationMail
+$lang['subject_mail_account_creation'] = "Confirmation de création de compte";
+$lang['message_mail_account_creation_1'] = "Bonjour ";
+$lang['message_mail_account_creation_2'] = ", \n\nVotre compte sur AppLogo a été créé.\nVoici vos informations de connexion : \n\n";
+$lang['message_mail_account_creation_3'] = "Identifiant : ";
+$lang['message_mail_account_creation_4'] = "\nMot de passe : ";
+$lang['message_mail_account_creation_5'] = "\n\nNous vous invitons dès votre première connexion a changer le mot de passe par défaut.\n\n-- Ne répondez pas à cet message --\nAdministrateur";

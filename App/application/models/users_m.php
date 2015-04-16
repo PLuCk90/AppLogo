@@ -4,7 +4,7 @@ class Users_m extends CI_Model {
 
 	public function check_connection($data)
 	{
-	        $sql = "SELECT u.id_user,u.name_user,u.firstname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
+	        $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
 	        $query=$this->db->query($sql); 
 	        if($query->num_rows()==1)
 	        {
@@ -16,9 +16,28 @@ class Users_m extends CI_Model {
 	            return false;
     }
 
+    public function check_language($lang=null)
+    {
+      $this->lang->is_loaded = array();
+      $this->lang->language = array();
+      $files = array('view','calendar','date','db','email','form_validation','ftp','imglib','migration','number','profiler','unit_test','upload');
+      foreach ($files as $key => $file) {
+        if(isset($lang))
+        {
+            $this->lang->load($file, $lang);  
+        }
+        else
+        {
+           $this->lang->load($file, $this->session->userdata('description_language') );   
+        }
+        
+      }
+      
+    }
+
     public function getAllUsers()
     {
- 	 $this->db->select('u.id_user,u.name_user,u.firstname_user,u.mail_user,u.password_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
+ 	 $this->db->select('u.id_user,u.name_user,u.lastname_user,u.mail_user,u.password_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
 	 $this->db->from('User u, Right_u r, Language l');
 	 $this->db->where('r.id_right = u.id_right_user AND u.id_language_user = l.id_language');
 
@@ -37,6 +56,11 @@ class Users_m extends CI_Model {
      return $query->result(); 
     }
 
+    public function getLanguageById($id)
+    {
+     return $this->db->get_where('Language', array('id_language' => $id),1,0)->row_array();
+    }
+
     public function getUserById($id)
     {
     	return $this->db->get_where('User', array('id_user' => $id),1,0)->row_array();
@@ -53,6 +77,11 @@ class Users_m extends CI_Model {
             } 
         } 
         return $return;
+    }
+
+    public function insertUser($data)
+    {
+      return $this->db->insert("User",$data);
     }
 
     public function updateUser($id,$data)
