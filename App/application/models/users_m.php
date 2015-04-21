@@ -37,11 +37,11 @@ class Users_m extends CI_Model {
 
     public function getAllUsers()
     {
- 	 $this->db->select('u.id_user,u.name_user,u.lastname_user,u.mail_user,u.password_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
+ 	 $this->db->select('u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
 	 $this->db->from('User u, Right_u r, Language l');
 	 $this->db->where('r.id_right = u.id_right_user AND u.id_language_user = l.id_language');
 
-	$this->db->order_by('u.id_user', 'ASC');
+	 $this->db->order_by('u.lastname_user', 'ASC');
 	 $query = $this->db->get();
 	 return $query->result(); 
     }

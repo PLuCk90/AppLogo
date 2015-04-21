@@ -14,6 +14,7 @@ $lang['infos_header'] = "Mes infos";
 $lang['home_label'] = "Accueil";
 $lang['users_label'] = "Gestion des utilisateurs";
 $lang['logout_label'] = "Déconnexion";
+$lang['my_account_label'] = "Mon compte";
 
 //--manageUsers
 $lang['users_table_header'] = "Liste des utilisateurs";
@@ -38,6 +39,7 @@ $lang['Desact_alert_title'] = "Attention!";
 $lang['Desact_alert_message'] = "Vous êtes en train de désactiver votre propre compte. êtes vous sur de vouloir continuer ?";
 $lang['Desact_alert_continue'] = "Désactiver";
 $lang['Desact_alert_close'] = "Annuler";
+$lang['no_match'] = "Aucun résultat.";
 
 //--alterUser
 $lang['update_form_header'] = "Modifier les infos";

@@ -1,8 +1,13 @@
-<?php //	print_r($this->session->all_userdata()) ;
-
+<?php 	//print_r($this->session->all_userdata()) ;
+//print_r ($users);
 
 ?>
-<div class="panel small-10 columns" style="height:40em;" >
+<script type="text/javascript" style="display:none;">
+    base_url = '<?=base_url();?>';
+    users = '<?= json_encode($users);?>';
+</script>
+<div class="small-12 columns" style="padding:0" data-ng-controller="searchController">
+<div class="panel small-10 columns" style="margin-bottom:0;border:solid #C0C0C0 1px;" >
 	<div class="row" style="">
 			<font>
 			<table class="small-12" >
@@ -23,7 +28,7 @@
 				<tbody>
 					<?php if( $users != NULL): ?>
 						<?php foreach ($users as $value): ?>
-							<tr>
+							<tr id="userRow<?php echo hash("sha256",$value->id_user,FALSE);?>" class="userRow">
 								<?php
 								$online=False;
 								foreach ($sessions as $session) {
@@ -74,39 +79,47 @@
 									<a href="#" data-options="is_hover:true" class="button radius secondary tiny fi-wrench" data-dropdown="toolsDrop<?php echo hash("sha256",$value->id_user,FALSE)?>" style="font-size:1.5em;margin:0;padding:13px">&raquo;</a>
 						  			<ul id="toolsDrop<?php echo hash("sha256",$value->id_user,FALSE)?>" class="[tiny content] f-dropdown" data-dropdown-content > 
 						  				<li><a href="<?php echo site_url("admin_c/alterUser")."/".$value->id_user; ?>" style="margin:0" ><i class="fi-clipboard-pencil" style="font-size:1.2em"></i> <?php echo lang('update_label');?></a></li>
-						  				<li><a href="" data-reveal-id="delAlert" style="margin:0"><i class="fi-trash" style="font-size:1.2em"></i> <?php echo lang('delete_label');?></a></li>
+						  				<li><a href="" data-reveal-id="delAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>" style="margin:0"><i class="fi-trash" style="font-size:1.2em"></i> <?php echo lang('delete_label');?></a></li>
 						  			</ul>	
+
+							  		<div id="delAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>" class="reveal-modal" data-reveal aria-labelledby="delAlertTitle" aria-hidden="true" role="dialog">
+									  <h2 id="delAlertTitle"><?php echo lang('del_alert_title');?></h2>
+									  <p><?php echo lang('del_alert_message'); ?></p>
+									  <p><a href="<?php echo site_url("admin_c/delUser")."/".$value->id_user; ?>" class="alert button" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('del_alert_continue');?></a>
+									   <a class='close secondary button' onclick="$('#delAlert<?php echo hash("sha256",$value->id_user,FALSE); ?>').foundation('reveal', 'close');"><?php echo lang('del_alert_close');?></a></p>
+									</div>
 								</td>
+
 							</tr>
+
 						<?php endforeach; ?>
 					<?php endif; ?>
 				<tbody>
 			</table>
+			<div class="row">
+			<div id="noMatch" class="small-3 small-offset-5 columns" style="display:none;"><?= lang('no_match');?></div>
+			</div>
 	</div>
-	<div id="delAlert" class="reveal-modal" data-reveal aria-labelledby="delAlertTitle" aria-hidden="true" role="dialog">
-	  <h2 id="delAlertTitle"><?php echo lang('del_alert_title');?></h2>
-	  <p><?php echo lang('del_alert_message'); ?></p>
-	  <p><a href="<?php echo site_url("admin_c/delUser")."/".$value->id_user; ?>" class="alert button" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('del_alert_continue');?></a>
-	   <a class='close secondary button' onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('del_alert_close');?></a></p>
-	</div>
+
 </div>
 
-<div class="panel small-2 columns" style="height:40em;">
+<div class="panel small-2 columns" style="margin-bottom:0;border:none;">
 	<div class="row">
 		<a href="<?php echo site_url("admin_c/createUser")."/".$value->id_user; ?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
 	</div>
 	<div class="row">
 		<div class="row collapse postfix-round">
-	        <div class="small-9 columns">
-	          <input type="text" placeholder="<?php echo lang('search_label');?>">
+
+	        <div class="small-12 columns">
+	          <input type="text" data-ng-model="search" placeholder="<?php echo lang('search_label');?>">
 	        </div>
-	        <div class="small-3 columns">
+	        <!--<div class="small-3 columns">
 	          <a href="#" class="button postfix">Go</a>
-	    	</div>
+	    	</div>-->
     	</div>
 	</div>
 </div>
-
+</div>
 
 
 

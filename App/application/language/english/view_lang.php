@@ -14,6 +14,7 @@ $lang['infos_header'] = "Details";
 $lang['home_label'] = "Home";
 $lang['users_label'] = "Users Management";
 $lang['logout_label'] = "Log out";
+$lang['my_account_label'] = "My account";
 
 //--manageUsers
 $lang['users_table_header'] = "Users";
@@ -38,6 +39,7 @@ $lang['Desact_alert_title'] = "Warning!";
 $lang['Desact_alert_message'] = "Your are disabling your proper account. Do you want to continue ?";
 $lang['Desact_alert_continue'] = "Disable";
 $lang['Desact_alert_close'] = "Cancel";
+$lang['no_match'] = "No match found.";
 
 //--alterUser
 $lang['update_form_header'] = "Update user details";

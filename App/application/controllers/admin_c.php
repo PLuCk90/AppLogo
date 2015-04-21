@@ -14,9 +14,15 @@ class Admin_c extends CI_Controller {
     public function redirection()
     {
         //print_r($this->session->userdata('activation_user'));
-        if($this->session->userdata('activation_user')=='0'){
-        redirect('main_c/display_activation_alert'); 
+        if($this->session->userdata('activation_user')){
+            if($this->session->userdata('activation_user')=='0'){
+            redirect('main_c/display_activation_alert'); 
+            }
         }
+        else{
+            redirect('main_c');
+        }
+
     	if($this->session->userdata('description_right')!='admin'){
         redirect('main_c');
         }

@@ -35,7 +35,7 @@ function activationRequest(id,id_state,url,self)
     } 
     $.ajax({
     type: "POST",
-    url: url + "index.php/admin_c/activateUser/"+id+"/"+state,
+    url: base_url + "index.php/admin_c/activateUser/"+id+"/"+state,
     success: function(res){if(self==true){window.location.replace(url+"index.php/admin_c/display_users");}
   }});
 }
@@ -45,4 +45,43 @@ function displayActAlert()
   $('#ActAlert').foundation('reveal', 'open');
   //alert('ça marche');
   //$('a.reveal-link').trigger('click');
-}
+} 
+
+var angularEnv = angular.module('angularEnv',[]);
+angularEnv.controller("searchController", function($scope,$http){
+   $scope.$watch('search', function() {
+                  
+                  //console.log(users);
+                 $http({
+                  method:'GET',
+                  url: base_url+"assets/js/searchBar.php?search="+$scope.search+'&users='+users,
+                }).success(
+                    function(data_result, status){
+                      //console.log(data_result);
+                      //console.log($scope.search);
+                      $scope.disp = data_result;
+                      if($scope.search == undefined || $scope.search == ''){ //--no search entry
+                      angular.element($('.userRow')).attr('style','display:');
+                       angular.element($('#noMatch')).attr('style','display:none');
+                      }
+                      else{
+                        if(data_result.length < '1'){ //--no match
+                        angular.element($('.userRow')).attr('style','display:none');
+                        angular.element($('#noMatch')).attr('style','display:');
+
+                      }
+                      else{
+                        angular.element($('.userRow')).attr('style','display:none');
+                        angular.forEach(data_result, function(value, key) { //--some matches
+                        angular.element($('#noMatch')).attr('style','display:none');
+                        var id = '#userRow'+value; 
+                        angular.element($(id)).attr('style','display:');
+                        });
+                      }
+                      }
+                      
+                      
+                    }
+                  );
+            });
+});
