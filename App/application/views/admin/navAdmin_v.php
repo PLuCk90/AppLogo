@@ -43,9 +43,9 @@
 			      	  </li>
 				      <li class="has-dropdown">
 				        <a href="#" class="small fi-widget" style="font-size:1.5em;"></a>
-				        <ul class="dropdown">
-				        	<li><a class="fi-torso" href="<?php echo site_url('main_c/manageMyAccount'); ?>"> <?php echo lang('my_account_label');?></a></li>
-					        <li><a class="fi-power" href="<?php echo site_url('main_c/logout'); ?>"> <?php echo lang('logout_label');?></a></li>
+				        <ul class="dropdown" style="border:solid 1px #282828;color:#C0C0C0;padding:0px;">
+				        	<li><a class="fi-torso " style="margin:0;border:solid 1px #DDDDDD;" href="<?php echo site_url('admin_c/manage_my_account/'.$this->session->userdata('id_user')); ?>"> <?php echo lang('my_account_label');?></a></li>
+					        <li><a class="fi-power " style="margin:0;border:solid 1px #DDDDDD;" href="<?php echo site_url('main_c/logout'); ?>"> <?php echo lang('logout_label');?></a></li>
 				        </ul>
 
 				      </li>

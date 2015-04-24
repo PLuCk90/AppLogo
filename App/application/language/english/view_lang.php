@@ -76,3 +76,7 @@ $lang['message_mail_account_creation_3'] = "Login : ";
 $lang['message_mail_account_creation_4'] = "\nPassword : ";
 $lang['message_mail_account_creation_5'] = "\n\nWe invite you to change default password right from your first log in.\n\n-- Don't reply this message --\nAdministrator";
 
+//--Myaccount
+$lang['password_label'] = "Password";
+$lang['confirm_password_label'] = "Confirm password";
+$lang['password_match_message'] = "Passwords does not match.";

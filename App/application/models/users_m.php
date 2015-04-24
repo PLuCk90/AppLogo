@@ -16,6 +16,20 @@ class Users_m extends CI_Model {
 	            return false;
     }
 
+    public function check_user($data)
+  {
+          $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.id_user=\"".$data['id_user']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
+          $query=$this->db->query($sql); 
+          if($query->num_rows()==1)
+          {
+              $row=$query->result_array();
+              $result=$row[0];
+              return $result;
+          }
+          else
+              return false;
+    }
+
     public function check_language($lang=null)
     {
       $this->lang->is_loaded = array();

@@ -76,8 +76,7 @@ class Main_c extends CI_Controller {
   {
     $this->load->view('head_v');
     $this->load->view('activation_alert_v');
-    $this->load->view('footer_v');
-    
+    $this->load->view('footer_v'); 
   }
 
 }

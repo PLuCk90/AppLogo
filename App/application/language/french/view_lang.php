@@ -77,3 +77,8 @@ $lang['message_mail_account_creation_2'] = ", \n\nVotre compte sur AppLogo a ét
 $lang['message_mail_account_creation_3'] = "Identifiant : ";
 $lang['message_mail_account_creation_4'] = "\nMot de passe : ";
 $lang['message_mail_account_creation_5'] = "\n\nNous vous invitons dès votre première connexion a changer le mot de passe par défaut.\n\n-- Ne répondez pas à cet message --\nAdministrateur";
+
+//--Myaccount
+$lang['password_label'] = "Mot de passe";
+$lang['confirm_password_label'] = "Confirmation mot de passe";
+$lang['password_match_message'] = "Les mots de passe ne correspondent pas.";
