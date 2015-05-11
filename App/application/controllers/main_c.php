@@ -14,9 +14,15 @@ class Main_c extends CI_Controller {
     	if( $this->session->userdata('description_right')=='admin'){
             redirect('admin_c');
         }
-        if( $this->session->userdata('description_right')=='user'){
-            redirect('client_c');
-        }
+      if( $this->session->userdata('description_right')=='salesperson'){
+          redirect('salesperson_c');
+      }
+      if( $this->session->userdata('description_right')=='coordinator'){
+          redirect('coordinator_c');
+      }
+      if( $this->session->userdata('description_right')=='management'){
+          redirect('management_c');
+      }
     }
 
     

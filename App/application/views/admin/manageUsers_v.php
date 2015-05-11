@@ -1,28 +1,29 @@
 <?php 	//print_r($this->session->all_userdata()) ;
-//print_r ($users);
+//print_r ($M3);
 
 ?>
+
 <script type="text/javascript" style="display:none;">
     base_url = '<?=base_url();?>';
     users = '<?= json_encode($users);?>';
 </script>
-<div class="small-12 columns" style="padding:0" data-ng-controller="searchController">
-<div class="panel small-10 columns" style="margin-bottom:0;border:solid #C0C0C0 1px;" >
-	<div class="row" style="">
+<div class="panel small-10 medium-10 columns" style="margin-bottom:0;border:solid #C0C0C0 1px;" data-ng-controller="searchController">
 			<font>
-			<table class="small-12" >
-				<caption ><?php echo lang('users_table_header');?></caption>
+			<table class="medium-12 small-6"	>
+				<caption><?php echo lang('users_table_header');?></caption>
 				<thead>
 					<tr>
-						<th width="100em"><?php echo lang('online_label');?></th>
+						<th width="40em"><?php echo lang('online_label');?></th>
 						<th width="100em"><?php echo lang('lastname_label');?></th>
 						<th width="100em"><?php echo lang('name_label');?></th>
+						<th width="100em"><?php echo lang('M3code_label');?></th>
+						<th width="100em"><?php echo lang('M3coor_label');?></th>
 						<th width="100em"><?php echo lang('mail_label');?></th>
 						<th width="100em"><?php echo lang('phone_label');?></th>
-						<th width="110em"><?php echo lang('language_label');?></th>
-						<th width="50em"><?php echo lang('rights_label');?></th>
+						<th class="hide-for-small" width="60em"><?php echo lang('language_label');?></th>
+						<th class="hide-for-small" width="50em"><?php echo lang('rights_label');?></th>
 						<th width="50em"><?php echo lang('active_label');?></th>
-						<th width="100em"><?php echo lang('operations_label');?></th>
+						<th width="50em"><?php echo lang('operations_label');?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,9 +42,11 @@
 								<script>display_online_users('<?php echo $online;?>','#<?php echo hash("sha256",$value->id_user,FALSE);?>','<?php echo base_url();?>')</script>
 								<td><?php echo $value->lastname_user; ?></td>
 								<td><?= $value->name_user; ?></td>
+								<td><?= $value->id_m3; ?></td>
+								<td><?php if($value->id_coor_m3 == ''){echo lang('no_coor');} ?></td>
 								<td><?= $value->mail_user; ?></td>
 								<td><?= $value->phone_user; ?></td>
-								<td> 
+								<td class="hide-for-small"> 
 									<a href="#" data-options="is_hover:true" class="tiny" data-dropdown="langDrop<?php echo hash("sha256",$value->id_user,FALSE)?>" style="font-size:1em;margin-left:15px;">
 									<?php 
 									if(isset($value->description_language)){print_r("<img height=\"12.5em\" width=\"12.5em\" src=\"".base_url()."/assets/img/flags/".$value->description_language.".png\" alt =\"".$value->description_language."\">");}
@@ -54,13 +57,13 @@
 										<li>
 											<a href="<?php echo site_url("admin_c/changeLanguage")."/".$value->id_user."/".$language->id_language."/".$language->description_language;; ?>" style="margin:0" >
 												<img height="8%" width="8%" src="<?php echo base_url();?>/assets/img/flags/<?php echo $language->description_language;?>.png" alt ="<?php echo $language->description_language; ?>">
-												<?php echo ucfirst ($language->description_language);?>
+												<?php echo ucfirst ($this->users_m->getLangLabel($language->id_language));?>
 											</a>
 										</li>
 										<?php endforeach; ?>
 						  			</ul>
 								</td>
-								<td><?= ucfirst ($value->description_right); ?></td>
+								<td class="hide-for-small"><?= ucfirst ($this->users_m->getRightLabel($value->id_right_user)); ?></td>
 								<td>
 									<div class="switch round">
   										<input id="activation<?php echo hash("sha256",$value->id_user,FALSE); ?>" type="checkbox" 
@@ -94,18 +97,19 @@
 
 						<?php endforeach; ?>
 					<?php endif; ?>
-				<tbody>
+				</tbody>
 			</table>
-			<div class="row">
-			<div id="noMatch" class="small-3 small-offset-5 columns" style="display:none;"><?= lang('no_match');?></div>
-			</div>
-	</div>
 
+			<div class="row">
+				<div id="noMatch" class="small-3 small-offset-5 columns" style="display:none;"><?= lang('no_match');?></div>
+			</div>
 </div>
+
+
 
 <div class="panel small-2 columns" style="margin-bottom:0;border:none;">
 	<div class="row">
-		<a href="<?php echo site_url("admin_c/createUser")."/".$value->id_user; ?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
+		<a href="<?php echo site_url("admin_c/createUser")?>" class="button radius small-12" onclick="$('#delAlert').foundation('reveal', 'close');"><?php echo lang('add_user_label');?></a>
 	</div>
 	<div class="row">
 		<div class="row collapse postfix-round">
@@ -119,8 +123,6 @@
     	</div>
 	</div>
 </div>
-</div>
-
 
 
 	

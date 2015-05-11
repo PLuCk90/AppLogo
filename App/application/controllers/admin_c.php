@@ -53,7 +53,7 @@ class Admin_c extends CI_Controller {
         $this->load->view('admin/footerAdmin_v');
     }
 
-    public function createUser($data)
+    public function createUser($data=null)
         {
             $this->redirection();
             $this->display_createUser();
@@ -91,7 +91,9 @@ class Admin_c extends CI_Controller {
                     'mail_user'=>$this->input->post('mail_user'),
                     'phone_user'=>$this->input->post('phone_user'),
                     'id_right_user'=>$this->input->post('id_right'),
-                    'id_language_user'=>$this->input->post('id_lang')
+                    'id_language_user'=>$this->input->post('id_lang'),
+                    'id_M3'=>$this->input->post('id_m3'),
+                    'id_coor_M3'=>$this->input->post('id_coor_m3')
                 ); 
  
             $this->form_validation->set_rules('lastname_user',lang('lastname_label'),'trim|required|min_length[2]|max_length[12]');
@@ -101,6 +103,8 @@ class Admin_c extends CI_Controller {
             $this->form_validation->set_rules('mail_user',lang('mail_label'),'trim|required|valid_email');
             $this->form_validation->set_rules('id_right', lang('rights_label'), 'trim|callback_dropdown_check'); 
             $this->form_validation->set_rules('id_lang', lang('lang_label'), 'trim|callback_dropdown_check');
+            $this->form_validation->set_rules('id_m3', lang('M3_code_label'), 'trim|required|exact_length[3]'); 
+            $this->form_validation->set_rules('id_coor_m3', lang('M3_coor_code_label'), 'trim|exact_length[3]');
 
             $this->form_validation->set_error_delimiters('<span class="error fi-alert"> ','</span>');  
 
@@ -109,6 +113,7 @@ class Admin_c extends CI_Controller {
             } 
             else 
             {
+                //print_r($data);
                 $data = array_merge($data,array('alert'=>true));
                 $this->session->set_userdata(array('data'=>$data));
                 $this->display_createUser($data);
@@ -136,20 +141,26 @@ class Admin_c extends CI_Controller {
     public function validation_alterUser()
     {
         //print_r($this->input->post('pass'));
+   
         $id=$this->input->post('id_user'); 
-        $data= array(    
+        $data= array( 
+                'id_user' =>$this->input->post('id_user'),   
                 'name_user'=>$this->input->post('name_user'), 
                 'lastname_user'=>$this->input->post('lastname_user'),
                 'mail_user'=>$this->input->post('mail_user'),
                 'phone_user'=>$this->input->post('phone_user'),
-                'id_right_user'=>$this->input->post('id_right')
+                'id_right_user'=>$this->input->post('id_right'),
+                'id_M3'=>$this->input->post('id_m3'),
+                'id_coor_M3'=>$this->input->post('id_coor_m3')
             ); 
         $this->form_validation->set_rules('lastname_user',lang('lastname_label'),'trim|required|min_length[2]|max_length[12]');
         $this->form_validation->set_rules('name_user',lang('name_label'),'trim|required|min_length[2]|max_length[12]');
         $this->form_validation->set_message('integer', lang('phone_validation_message'));
         $this->form_validation->set_rules('phone_user',lang('phone_label'),'trim|required|integer|exact_length[10]');
         $this->form_validation->set_rules('mail_user',lang('mail_label'),'trim|required|valid_email');
-        $this->form_validation->set_rules('id_right', lang('rights_label'), 'trim|callback_dropdown_check'); 
+        $this->form_validation->set_rules('id_right', lang('rights_label'), 'trim|callback_dropdown_check');
+        $this->form_validation->set_rules('id_m3', lang('M3_code_label'), 'trim|required|exact_length[3]'); 
+        $this->form_validation->set_rules('id_coor_m3', lang('M3_coor_code_label'), 'trim|exact_length[3]');
 
         $this->form_validation->set_error_delimiters('<span class="error fi-alert"> ','</span>');  
 

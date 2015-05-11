@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'trecool7';
-$db['default']['database'] = 'AppLogo';
+$db['default']['password'] = '';
+$db['default']['database'] = 'applogo';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -64,6 +64,21 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['m3_db']['database'] = 'BPW_Datamarts';
+$db['m3_db']['hostname'] = '193.242.4.213';
+$db['m3_db']['username'] = 'sa';
+$db['m3_db']['password'] = 'Logo123';
+$db['m3_db']['dbdriver'] = 'sqlsrv';
+$db['m3_db']['dbprefix'] = '';
+$db['m3_db']['pconnect'] = FALSE;
+$db['m3_db']['db_debug'] = TRUE;
+$db['m3_db']['cache_on'] = FALSE;
+$db['m3_db']['cachedir'] = '';
+$db['m3_db']['char_set'] = 'utf8';
+$db['m3_db']['dbcollat'] = 'utf8_general_ci';
+$db['m3_db']['swap_pre'] = '';
+$db['m3_db']['autoinit'] = TRUE;
+$db['m3_db']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

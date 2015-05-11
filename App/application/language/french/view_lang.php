@@ -1,5 +1,17 @@
 <?php
 
+
+//--Rights labels
+$lang['description_right_label_1'] = "Administrateur";
+$lang['description_right_label_2'] = "Commercial";
+$lang['description_right_label_3'] = "Coordinateur";
+$lang['description_right_label_4'] = "Direction";
+
+//--Lang labels
+$lang['description_lang_label_1'] = "Français";
+$lang['description_lang_label_2'] = "Anglais";
+ 
+
 //--connection_form
 $lang['mail_form'] = "Adresse mail :";
 $lang['password_form'] = "Mot de passe :";
@@ -40,6 +52,12 @@ $lang['Desact_alert_message'] = "Vous êtes en train de désactiver votre propre
 $lang['Desact_alert_continue'] = "Désactiver";
 $lang['Desact_alert_close'] = "Annuler";
 $lang['no_match'] = "Aucun résultat.";
+$lang['M3code_label']="Code M3";
+$lang['M3coor_label']="Coordinateur";
+$lang['M3_code_label']="code M3";
+$lang['M3_coor_code_label']="Code M3 du coordinateur";
+$lang['leave_empty']=" (Laissez vide, s'il n'existe pas.)";
+$lang['no_coor']="Pas de coordinateur";
 
 //--alterUser
 $lang['update_form_header'] = "Modifier les infos";
@@ -53,7 +71,7 @@ $lang['dropdown_validation_message'] = "Veuillez faire un choix";
 
 //--activation_alert_v
 $lang['act_alert_title'] = "Impossible d'accéder au site !";
-$lang['act_alert_message'] = "Votre compte est désactivé. veuillez contacter l'administrateur réseau.";
+$lang['act_alert_message'] = "Une erreur s'est produite ou votre compte a été désactivé. Réessayez plus tard ou contactez votre administrateur réseau.";
 $lang['act_alert_close'] = "";
 $lang['act_alert_continue'] = "Ok";
 
@@ -82,3 +100,21 @@ $lang['message_mail_account_creation_5'] = "\n\nNous vous invitons dès votre pr
 $lang['password_label'] = "Mot de passe";
 $lang['confirm_password_label'] = "Confirmation mot de passe";
 $lang['password_match_message'] = "Les mots de passe ne correspondent pas.";
+
+//--nav_salesperson_v
+$lang['topbar_sales_title'] = "LOGO";
+$lang['sales_forecast_label'] = "Prévisions commerciales";
+
+//--salesforecastTable
+$lang['licence_label']="Licence";
+$lang['theme_label']="Thème";
+$lang['family_label']="Famille";
+$lang['mounting_label']="Montage";
+$lang['reference_label']="Réference";
+$lang['designation_label']="Désignation";
+$lang['type_label']="Type Article";
+$lang['quantity_label']="Quantité à facturer";
+$lang['quantity_BO_label']="Quantité BO";
+$lang['delivery_label']="Période de livraison";
+$lang['select_licence_label']="Toutes les licences";
+$lang['all']= "Tout";

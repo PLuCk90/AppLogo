@@ -16,6 +16,14 @@
 		<input name="mail_user"  type="text"  size="50" 	value="<?= set_value('mail_user');?>"/>
 		<?= form_error('mail_user');?>    </label>
 
+		<label><?php echo lang('M3_code_label');?>
+		<input name="id_m3"  type="text"  size="3" 	value="<?= set_value('id_m3');?>"/>
+		<?= form_error('id_m3');?>    </label>
+
+		<label><?php echo lang('M3_coor_code_label');echo lang('leave_empty');?>
+		<input name="id_coor_m3"  type="text"  size="3" 	value="<?= set_value('id_coor_m3');?>"/>
+		<?= form_error('id_coor_m3');?>    </label>
+
 		<label><?php echo lang('phone_label');?>
 		<input name="phone_user"  type="text"  size="50" 	value="<?= set_value('phone_user');?>"/>
 		<?= form_error('phone_user');?>    </label>

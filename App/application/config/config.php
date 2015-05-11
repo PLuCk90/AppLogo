@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Stage/App/';
+$config['base_url']	= 'http://193.242.4.111/AppLogo/App/';
 
 /*
 |--------------------------------------------------------------------------

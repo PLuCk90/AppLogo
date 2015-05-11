@@ -1,5 +1,17 @@
 <?php
 
+//--Rights labels
+$lang['description_right_label_1'] = "Administrator";
+$lang['description_right_label_2'] = "Salesperson";
+$lang['description_right_label_3'] = "Coordinator";
+$lang['description_right_label_4'] = "Management";
+
+//--Lang labels
+$lang['description_lang_label_1'] = "French";
+$lang['description_lang_label_2'] = "English";
+
+
+
 //--connection_form
 $lang['mail_form'] = "E-mail :";
 $lang['password_form'] = "Password :";
@@ -40,6 +52,9 @@ $lang['Desact_alert_message'] = "Your are disabling your proper account. Do you 
 $lang['Desact_alert_continue'] = "Disable";
 $lang['Desact_alert_close'] = "Cancel";
 $lang['no_match'] = "No match found.";
+$lang['M3code_label']="M3 code";
+$lang['M3coor_label']="Coordinator";
+$lang['no_coor']="No coordinator";
 
 //--alterUser
 $lang['update_form_header'] = "Update user details";
@@ -52,7 +67,7 @@ $lang['dropdown_validation_message'] = "Please make a choice";
 
 //--activation_alert_v
 $lang['act_alert_title'] = "Unable to access the site!";
-$lang['act_alert_message'] = "Your account has been desctivated. Please contact administrator.";
+$lang['act_alert_message'] = "Something went wrong or your account has been desctivated. Retry later or contact administrator.";
 $lang['act_alert_close'] = "";
 $lang['act_alert_continue'] = "Ok";
 
@@ -61,6 +76,9 @@ $lang['create_form_header'] = "Create a new user";
 $lang['create_label'] = "Create";
 $lang['lang_dropdown_header'] = "Choose a default language";
 $lang['lang_label'] = "Language";
+$lang['M3_code_label']="M3 code";
+$lang['M3_coor_code_label']="Coordinator M3 code";
+$lang['leave_empty']=" (If not leave empty)";
 
 //--validation_createUser (method)
 $lang['cre_alert_title'] = "Account activation";
@@ -80,3 +98,21 @@ $lang['message_mail_account_creation_5'] = "\n\nWe invite you to change default 
 $lang['password_label'] = "Password";
 $lang['confirm_password_label'] = "Confirm password";
 $lang['password_match_message'] = "Passwords does not match.";
+
+//--nav_salesperson_v
+$lang['topbar_sales_title'] = "LOGO";
+$lang['sales_forecast_label'] = "Sales forecast";
+
+//--salesforecastTable
+$lang['licence_label']="Licence";
+$lang['theme_label']="Theme";
+$lang['family_label']="Family";
+$lang['mounting_label']="Mounting";
+$lang['reference_label']="Reference";
+$lang['designation_label']="Designation";
+$lang['type_label']="Item Type";
+$lang['quantity_label']="Quantity to invoice";
+$lang['quantity_BO_label']="Quantity BO";
+$lang['delivery_label']="Delivery date";
+$lang['select_licence_label']="All licences";
+$lang['all']= "All";

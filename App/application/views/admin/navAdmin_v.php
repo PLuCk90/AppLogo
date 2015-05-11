@@ -11,7 +11,7 @@
 		
 			  <section class="top-bar-section">
 				<ul class="left">
-	 		 			<li ><a class="fi-torsos-all" href="<?php echo site_url('admin_c/display_users'); ?>"> <?php echo lang('users_label');?></a></li> 
+	 		 			<li ><a class="fi-torsos-all" href="<?php echo site_url('admin_c/display_users'); ?>"> <?php echo lang('users_label');?></a></li>
 				 	
 				</ul>
 				
@@ -34,7 +34,7 @@
 						 		 			<i class="fi-telephone"> </i><?php echo $this->session->userdata('phone_user');?>
 					 		 			</div>
 					 		 			<div class="panel" style="padding:0;padding-left:10px;margin:0">
-						 		 			<i class="fi-torso-business"> </i><?php echo $this->session->userdata('description_right');?>
+						 		 			<i class="fi-torso-business"> </i><?php echo $this->users_m->getRightLabel($this->session->userdata('id_right_user'));?>
 					 		 			</div>
 				 		 			<!--</div>-->
 			 		 			</div>
@@ -55,5 +55,7 @@
 		
 </nav>
 </div>
-<div class="row panel" style="border:solid #C0C0C0 1px;padding:0;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
+<div class="row" style="max-width:100%;">
+<div class="small-12 medium-11 small-centered columns">
+<div class="small-12 columns panel" style="border:solid #C0C0C0 1px;padding:0;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
                 

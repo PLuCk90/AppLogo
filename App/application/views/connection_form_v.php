@@ -1,11 +1,12 @@
-<div class="panel small-4 small-centered columns" style="margin-top:100px;padding-top:40px;padding-bottom:20px;">
+<div class="hide-for-small-only" style="margin-top:200px;"></div>
+<div class="panel small-9 medium-4 small-centered columns" style="margin-top:50px;padding-top:40px;padding-bottom:20px;">
   <?php echo form_open('main_c/validation_connection_form'); ?>
 
   <div class="row">
     
 
       <div class="row">
-          <div class="small-10 small-centered columns">
+          <div class="small-12 medium-10 small-centered columns">
              <div class="small-5 columns">
                 <label for="login" class="right inline"><?php echo lang('mail_form');?></label>
             </div>
@@ -18,7 +19,7 @@
       </div>
 
       <div class="row">
-        <div class="small-10 small-centered columns">
+        <div class="small-12 medium-10 small-centered columns">
              <div class="small-5 columns">
                 <label for="pass" class="right inline"><?php echo lang('password_form');?></label>
             </div>
@@ -31,10 +32,10 @@
       </div>
 
       <div class="row">
-        <div class="small-10 small-centered columns">
+        <div class="small-12 medium-10 small-centered columns">
           <div class="small-11  columns right">
             <?php if(isset($erreur))echo '<span class="error">'.$erreur."</span>";?>
-            <input type="submit" class="button small radius small-12" value="<?php echo lang('login_form');?>"></a>
+            <input type="submit" class="button small radius small-12" value="<?php echo lang('login_form');?>">
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ class Users_m extends CI_Model {
 
 	public function check_connection($data)
 	{
-	        $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
+	        $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,u.id_right_user,r.description_right,l.description_language,u.activation_user, u.id_M3, u.id_coor_M3 FROM User u, Right_u r, Language l WHERE u.mail_user=\"".$data['login']."\"  AND u.password_user=\"".$data['pass']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
 	        $query=$this->db->query($sql); 
 	        if($query->num_rows()==1)
 	        {
@@ -18,7 +18,7 @@ class Users_m extends CI_Model {
 
     public function check_user($data)
   {
-          $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user FROM User u, Right_u r, Language l WHERE u.id_user=\"".$data['id_user']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
+          $sql = "SELECT u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user, u.id_M3, u.id_coor_M3 FROM User u, Right_u r, Language l WHERE u.id_user=\"".$data['id_user']."\" AND u.id_right_user = r.id_right AND u.id_language_user = l.id_language;";
           $query=$this->db->query($sql); 
           if($query->num_rows()==1)
           {
@@ -51,7 +51,7 @@ class Users_m extends CI_Model {
 
     public function getAllUsers()
     {
- 	 $this->db->select('u.id_user,u.name_user,u.lastname_user,u.mail_user,u.phone_user,r.description_right,l.description_language,u.activation_user');
+ 	 $this->db->select('u.id_user,u.name_user,u.lastname_user,u.id_m3,u.id_coor_m3,u.mail_user,u.phone_user,u.id_right_user, r.description_right,l.description_language,u.activation_user');
 	 $this->db->from('User u, Right_u r, Language l');
 	 $this->db->where('r.id_right = u.id_right_user AND u.id_language_user = l.id_language');
 
@@ -59,6 +59,7 @@ class Users_m extends CI_Model {
 	 $query = $this->db->get();
 	 return $query->result(); 
     }
+
 
     public function getAllLanguages()
     {
@@ -82,15 +83,29 @@ class Users_m extends CI_Model {
 
     public function getRightDropdown()
     {
+      $this->load->helper('language');
     	$result = $this->db->from("Right_u")->order_by('id_right')->get(); 
         $return = array(); 
         if($result->num_rows() > 0){ 
             $return['other'] = lang('rights_dropdown_header'); 
             foreach($result->result_array() as $row){ 
-                $return[$row['id_right']] = $row['description_right']; 
+                $return[$row['id_right']] = lang('description_right_label_'.$row['id_right']); 
             } 
-        } 
+        }
+
         return $return;
+    }
+
+    public function getRightLabel($id)
+    {
+      $this->load->helper('language');
+      return lang('description_right_label_'.$id);
+    }
+
+    public function getLangLabel($id)
+    {
+      $this->load->helper('language');
+      return lang('description_lang_label_'.$id);
     }
 
     public function insertUser($data)

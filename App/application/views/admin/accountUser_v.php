@@ -35,7 +35,7 @@
 		</label>
 
 		<input type="submit" name="alterUser" class="button radius small" value="<?php echo lang('update_label');?>" />
-		<a href="<?php echo site_url('admin_c/display_users'); ?>" class="secondary button radius small"><?php echo lang('del_alert_close');?></a>
+		<a href="<?php echo site_url('admin_c/display_admin_main'); ?>" class="secondary button radius small"><?php echo lang('del_alert_close');?></a>
 		
 			
 		</fieldset>	
