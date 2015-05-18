@@ -113,6 +113,7 @@ class Coordinator_c extends CI_Controller {
     public function sales_forecast()
     {
         //print_r($this->session->all_userdata());
+        //$data['products'] = $this->products_m->getAllProductsbyCoord($this->session->userdata('id_M3'));
         $data['licences'] = $this->products_m->getAllLicences($this->session->userdata('id_M3'));
         $data['themes'] = $this->products_m->getAllTheme($this->session->userdata('id_M3'));
         $data['families'] = $this->products_m->getAllFamily($this->session->userdata('id_M3'));
@@ -130,9 +131,33 @@ class Coordinator_c extends CI_Controller {
 
     public function updateLicences($code,$theme,$family,$mounting)
     {
-        if ($theme=='all'){$theme='';}else{$theme=" AND Thème = '".$theme."' ";}
-        if ($family=='all'){$family='';}else{$family=" AND Famille = '".$family."' ";}
-        if ($mounting=='all'){$mounting='';}else{$mounting=" AND Montage = '".$mounting."' ";}
+        if ($theme=='all'){$theme="";}else{$theme=" AND Thème = '".urldecode($theme)."' ";}
+        if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
+        if ($mounting=='all'){$mounting="";}else{$mounting=" AND Montage = '".urldecode($mounting)."' ";}
         $this->products_m->getLicenceDropdown($code,$theme,$family,$mounting);
+    }
+
+    public function updateThemes($code,$licence,$family,$mounting)
+    {
+        if ($licence=='all'){$licence="";}else{$licence=" AND Licence = '".urldecode($licence)."' ";}
+        if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
+        if ($mounting=='all'){$mounting="";}else{$mounting=" AND Montage = '".urldecode($mounting)."' ";}
+        $this->products_m->getThemeDropdown($code,$licence,$family,$mounting);
+    }
+
+    public function updateFamilies($code,$theme,$licence,$mounting)
+    {
+        if ($theme=='all'){$theme="";}else{$theme=" AND Thème = '".urldecode($theme)."' ";}
+        if ($licence=='all'){$licence="";}else{$licence=" AND Licence = '".urldecode($licence)."' ";}
+        if ($mounting=='all'){$mounting="";}else{$mounting=" AND Montage = '".urldecode($mounting)."' ";}
+        $this->products_m->getFamilyDropdown($code,$licence,$theme,$mounting);
+    }
+
+    public function updateMounting($code,$theme,$licence,$family)
+    {
+        if ($theme=='all'){$theme="";}else{$theme=" AND Thème = '".urldecode($theme)."' ";}
+        if ($licence=='all'){$licence="";}else{$licence=" AND Licence = '".urldecode($licence)."' ";}
+        if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
+        $this->products_m->getMountingDropdown($code,$licence,$family,$theme);
     }
    }

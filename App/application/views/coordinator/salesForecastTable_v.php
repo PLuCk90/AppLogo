@@ -1,8 +1,62 @@
 <?php
-	// foreach ($products as $product) {
-	//print_r($licences);
-	// echo '<br>';}
+	//  foreach ($products as $product) {
+	// print_r($product);
+	//  echo '<br>';}
 ?>
+	<style type="text/css"> 
+
+
+	.appTable{
+        border-spacing: 1px 0px; /* Nombre de pixels d'espace horizontal (5px), vertical (8px) */
+        background-color:black;
+        border-radius: 12px;
+        overflow:hidden;
+	}
+
+	.appTable th{
+		text-align:center;
+		padding:3px;
+	}
+
+	.appTable td{
+		text-align:center;
+	}
+
+	.month{
+		background-color: #687EA1;
+		color:white	;
+	}
+
+	.option{
+		background-color: #C5CFDF;
+	}
+
+	.detail{
+		background-color: #EBEFF5;
+	}
+
+	.produit{
+		background-color: orange;
+	}
+
+	.column1{
+		background-color:#DCDDDE;
+	}
+
+	.column2{
+		background-color:#BABDC1;
+		margin-bottom:0;
+	}
+
+	.top-strong{
+		border-top: 1px solid black;
+	}
+	.top-light{
+		border-top: 1px solid grey;
+	}
+	}
+
+	</style>
 	<script type="text/javascript" style="display:none;">
     base_url = '<?=base_url();?>';
     all = '<?php print_r(lang("all"));?>';
@@ -10,12 +64,12 @@
 	<script src="<?php echo base_url();?>assets/js/salesforecast.js"></script>
 
 
-	<div class="panel small-2 medium-2 columns" style="margin-bottom:0;border:solid #C0C0C0 1px;">
+	<div class="panel small-12 medium-12 columns" style="margin-bottom:0;border:none">
 
 			<div class="row">
-				<div class="small-12 columns">
+				<div class="small-3 columns">
 						<label><?php echo lang('licence_label');?>
-						<select id="licenceDrop" name="licence" onchange="displayLicences('<?php echo $this->session->userdata('id_M3');?>');">
+						<select id="licenceDrop" name="licence" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 							<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
 							<?php foreach($licences  as $licence) :?>
 
@@ -26,12 +80,10 @@
 						</select>
 						</label>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="small-12 columns">
+				<div class="small-3 columns">
 						<label><?php echo lang('theme_label');?>
-						<select id="themeDrop" name="theme" onchange="">
+						<select id="themeDrop" name="theme" onchange="displayLicences('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 							<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
 							<?php foreach($themes  as $theme) :?>
 
@@ -42,12 +94,10 @@
 						</select>
 						</label>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="small-12 columns">
+				<div class="small-3 columns">
 						<label><?php echo lang('family_label');?>
-						<select id="familyDrop" name="family" onchange="">
+						<select id="familyDrop" name="family" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayLicences('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 						<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
 						<?php foreach($families  as $family) :?>
 
@@ -58,12 +108,10 @@
 						</select>
 						</label>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="small-12 columns">
+				<div class="small-3 columns">
 						<label><?php echo lang('mounting_label');?>
-						<select id="mountingDrop" name="mounting" onchange="">
+						<select id="mountingDrop" name="mounting" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayLicences('<?php echo $this->session->userdata('id_M3');?>');">
 						<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
 						<?php foreach($mountings  as $mounting) :?>
 
@@ -78,51 +126,160 @@
 
 	</div>
 
-			<!--<table class="medium-12 small-6"	>
+	<div  class="panel medium-12 small-6">
+			<table class="appTable medium-12" style="border-top:black 1px solid;border-bottom:black 1px solid">
 				<thead>
-					<tr>
-						<th><?php echo lang('licence_label');?></th>
-						<th><?php echo lang('theme_label');?></th>
-						<th><?php echo lang('family_label');?></th>
-						<th><?php echo lang('mounting_label');?></th>
-						<th><?php echo lang('reference_label');?></th>
-						<th><?php echo lang('designation_label');?></th>
-						<th><?php echo lang('type_label');?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php if( $products != NULL): ?>
-						<?php foreach ($products as $product):
+				  <tr >
+					    <th class="hiddenPart" rowspan="3"></th>
+					    <th colspan="6" class="month">Maintenant</th>
+					    <th colspan="6" class="month">Mois+1</th>
+					    <th colspan="6" class="month" >Mois+2</th>
+				  </tr>
+				  <tr>
 
-							if(in_array($product['Licence'],$licence)==TRUE){
-								unset($product['Licence']);?>
-							<?php
-							}
-							else
-							{
-								array_push($licence,$product['Licence']);
-							?>
-							<tr style="background-color:#B9E3FF;"><td><?php if(isset($product['Licence'])){echo $product['Licence'];} ?></td>
-							<td><?= ''; ?></td>
-							<td><?= ''; ?></td>
-							<td><?= ''; ?></td>
-							<td><?= ''; ?></td>
-							<td><?= ''; ?></td>
-							<td><?= ''; ?></td>
-							</tr>
+					    <th class="option">Objectif<br></th>
+					    <th class="option" colspan="3">Backorder<br></th>
+					    <th class="option">Reste à faire<br></th>
+					    <th class="option">Prévisions</th>
 
-							<?php unset($product['Licence']); }?>
-							<tr>
-								<td><?php if(isset($product['Licence'])){echo $product['Licence'];} ?></td>
-								<td><?= $product['Thème']; ?></td>
-								<td><?= $product['Famille']; ?></td>
-								<td><?= $product['Montage']; ?></td>
-								<td><?= $product['Référence']; ?></td>
-								<td><?= $product['Désignation']; ?></td>
-								<td><?= $product['Type article']; ?></td>
-							</tr>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</tbody>
-			</table>-->
+					    <th class="option">Objectif<br></th>
+					    <th class="option" colspan="3">Backorder<br></th>
+					    <th class="option">Reste à faire<br></th>
+					    <th class="option">Prévisions</th>
 
+					    <th class="option">Objectif<br></th>
+					    <th class="option" colspan="3">Backorder<br></th>
+					    <th class="option">Reste à faire<br></th>
+					    <th class="option">Prévisions</th>
+				  </tr>
+				  <tr>
+					    <th class="detail"></th>
+					    <th class="detail"><?php echo lang('quantity_label');?></th>
+						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
+						<th class="detail"><?php echo lang('delivery_label');?></th>
+					    <th class="detail"></th>
+					    <th class="detail"></th>
+
+					    <th class="detail"></th>
+					    <th class="detail"><?php echo lang('quantity_label');?></th>
+						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
+						<th class="detail"><?php echo lang('delivery_label');?></th>
+					    <th class="detail"></th>
+					    <th class="detail"></th>
+
+					    <th class="detail"></th>
+					    <th class="detail"><?php echo lang('quantity_label');?></th>
+						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
+						<th class="detail"><?php echo lang('delivery_label');?></th>
+					    <th class="detail"></th>
+					    <th class="detail"></th>
+				 	</tr>				  
+			  	</thead>
+			  	<tbody>
+			  		<tr style="display:none;"></tr>
+				  	<tr>
+					    <td class="produit top-strong">produit 1</td>
+					    <td class="column2 top-strong">Rien</td>
+					    <td class="column1 top-strong">3</td>
+					    <td class="column2 top-strong">4</td>
+					    <td class="column1 top-strong">5</td>
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+					    <td class="column2 top-strong">rien</td>
+					    <td class="column1 top-strong">rien</td>
+					    <td style="display:none"></td>
+					 </tr>
+
+					 <tr style="display:none;"></tr>
+					 <tr>
+					    <td class="produit">produit 2</td>
+					    <td class="column2"></td>
+					    <td class="column1">3</td>
+					    <td class="column2">4</td>
+					    <td class="column1">5</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td style="display:none"></td>
+					 </tr>	
+
+					 <tr style="display:none;"></tr>
+					 <tr>
+					    <td class="produit">produit 3</td>
+					    <td class="column2"></td>
+					    <td class="column1">3</td>
+					    <td class="column2">4</td>
+					    <td class="column1">5</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td style="display:none"></td>
+					 </tr>	
+
+					 <tr style="display:none;"></tr>
+					 <tr>
+					    <td class="produit">produit 4</td>
+					    <td class="column2"></td>
+					    <td class="column1">3</td>
+					    <td class="column2">4</td>
+					    <td class="column1">5</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td class="column2">rien</td>
+					    <td class="column1">rien</td>
+					    <td style="display:none" ></td>
+					 </tr>	
+			  	</tbody>
+			</table>
+
+	</div>
