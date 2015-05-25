@@ -3,12 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
     <title>AppLogo</title>
     <!--<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/foundation/css/foundation.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/foundation/css/css/normalize.css" />-->
      <link rel="stylesheet" href="<?php echo base_url();?>assets/stylesheets/app.css" />
     <script src="<?php echo base_url();?>assets/bower_components/foundation/js/vendor/modernizr.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/foundation/js/vendor/jquery.js"></script>
+    <script src="<?php echo base_url();?>assets/js/vendor/jquery.floatThead.js"></script>
     <script src="<?php echo base_url();?>assets/js/angular.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/script.js"></script>
     <!--<script type="text/javascript">check_session_expiration('<?php echo site_url("main_c/check_session_expiration/");?>');</script>-->
@@ -23,4 +25,4 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
   <![endif]-->
   </head>
-  <body style="background-color:#EEEEEE;">
+  <body style="background-color:#EEEEEE;background:url(<?php echo base_url();?>assets/img/back.jpg);background-size:100% 100%;">

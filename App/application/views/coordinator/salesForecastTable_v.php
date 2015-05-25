@@ -9,7 +9,7 @@
 	.appTable{
         border-spacing: 1px 0px; /* Nombre de pixels d'espace horizontal (5px), vertical (8px) */
         background-color:black;
-        border-radius: 12px;
+        /*border-radius: 12px;*/
         overflow:hidden;
 	}
 
@@ -39,6 +39,11 @@
 		background-color: orange;
 	}
 
+	.produit:hover{
+		background-color:#E18700;
+		cursor:pointer;
+	}
+
 	.column1{
 		background-color:#DCDDDE;
 	}
@@ -54,20 +59,38 @@
 	.top-light{
 		border-top: 1px solid grey;
 	}
+
+	.forecast:hover{
+		background-color:#C9C9C9;
+		cursor:pointer;
+	}
 	}
 
 	</style>
 	<script type="text/javascript" style="display:none;">
     base_url = '<?=base_url();?>';
     all = '<?php print_r(lang("all"));?>';
+    M3_code = '<?php echo $this->session->userdata('id_M3');?>';
 	</script>
 	<script src="<?php echo base_url();?>assets/js/salesforecast.js"></script>
 
+	<div id="alert-filter" class="reveal-modal" data-reveal aria-labelledby="FilterTitle" aria-hidden="true" role="dialog">
+									  <h2 id="FilterTitle"><?php echo lang('filter_alert_title');?></h2>
+									  <p><?php echo lang('filter_alert_message'); ?></p>
+									  <p><a class="alert button" onclick="$('#alert-filter').foundation('reveal', 'close');"><?php echo lang('filter_alert_continue');?></a>
+	</div>
 
-	<div class="panel small-12 medium-12 columns" style="margin-bottom:0;border:none">
+	<div id="alert-filter2" class="reveal-modal" data-reveal aria-labelledby="FilterTitle2" aria-hidden="true" role="dialog">
+									  <h2 id="FilterTitle2"><?php echo lang('filter_alert_title2');?></h2>
+									  <p><?php echo lang('filter_alert_message2'); ?></p>
+									  <p><a class="alert button" onclick="$('#alert-filter2').foundation('reveal', 'close');"><?php echo lang('filter_alert_continue2');?></a>
+	</div>
+
+
+	<div class="panel small-12 medium-12 columns" style="margin-bottom:0;border:none;">
 
 			<div class="row">
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 						<label><?php echo lang('licence_label');?>
 						<select id="licenceDrop" name="licence" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 							<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
@@ -81,7 +104,7 @@
 						</label>
 				</div>
 
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 						<label><?php echo lang('theme_label');?>
 						<select id="themeDrop" name="theme" onchange="displayLicences('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 							<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
@@ -95,7 +118,7 @@
 						</label>
 				</div>
 
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 						<label><?php echo lang('family_label');?>
 						<select id="familyDrop" name="family" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayLicences('<?php echo $this->session->userdata('id_M3');?>');displayMounting('<?php echo $this->session->userdata('id_M3');?>');">
 						<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
@@ -109,7 +132,7 @@
 						</label>
 				</div>
 
-				<div class="small-3 columns">
+				<div class="small-2 columns">
 						<label><?php echo lang('mounting_label');?>
 						<select id="mountingDrop" name="mounting" onchange="displayThemes('<?php echo $this->session->userdata('id_M3');?>');displayFamilies('<?php echo $this->session->userdata('id_M3');?>');displayLicences('<?php echo $this->session->userdata('id_M3');?>');">
 						<option value="all" selected="selected"><?php print_r(lang('all'));?></option>
@@ -122,41 +145,45 @@
 						</select>
 						</label>
 				</div>
+
+				<div class="small-2 columns left" style="padding-top:1em">
+						<input type="submit" class="inline button small radius small-8" value="<?php echo lang('search_label');?>" onclick="updateProducts('<?php echo $this->session->userdata('id_M3');?>')">
+				</div>
 			</div>
 
 	</div>
 
-	<div  class="panel medium-12 small-6">
-			<table class="appTable medium-12" style="border-top:black 1px solid;border-bottom:black 1px solid">
-				<thead>
+	<div  class="panel medium-12 small-6" style="min-height:47em;margin-bottom:0;">
+			<table class="appTable medium-12" style="border-top:black 1px solid;border-bottom:black 1px solid;">
+				<thead id="tableHead">
 				  <tr >
-					    <th class="hiddenPart" rowspan="3"></th>
+					    <th rowspan="3" style="min-width:196px;"><?php echo lang('products_label');?></th>
 					    <th colspan="6" class="month">Maintenant</th>
 					    <th colspan="6" class="month">Mois+1</th>
 					    <th colspan="6" class="month" >Mois+2</th>
 				  </tr>
 				  <tr>
 
-					    <th class="option">Objectif<br></th>
-					    <th class="option" colspan="3">Backorder<br></th>
-					    <th class="option">Reste à faire<br></th>
-					    <th class="option">Prévisions</th>
+					    <th class="option"><?php echo lang('objective_label');?><br></th>
+					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option"><?php echo lang('rest_label');?><br></th>
+					    <th class="option"><?php echo lang('forecast_label');?></th>
 
-					    <th class="option">Objectif<br></th>
-					    <th class="option" colspan="3">Backorder<br></th>
-					    <th class="option">Reste à faire<br></th>
-					    <th class="option">Prévisions</th>
+					    <th class="option"><?php echo lang('objective_label');?><br></th>
+					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option"><?php echo lang('rest_label');?><br></th>
+					    <th class="option"><?php echo lang('forecast_label');?></th>
 
-					    <th class="option">Objectif<br></th>
-					    <th class="option" colspan="3">Backorder<br></th>
-					    <th class="option">Reste à faire<br></th>
-					    <th class="option">Prévisions</th>
+					    <th class="option"><?php echo lang('objective_label');?><br></th>
+					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option"><?php echo lang('rest_label');?><br></th>
+					    <th class="option"><?php echo lang('forecast_label');?></th>
 				  </tr>
 				  <tr>
 					    <th class="detail"></th>
 					    <th class="detail"><?php echo lang('quantity_label');?></th>
 						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
-						<th class="detail"><?php echo lang('delivery_label');?></th>
+						<th class="detail" style="min-width:78px;"><?php echo lang('delivery_label');?></th>
 					    <th class="detail"></th>
 					    <th class="detail"></th>
 
@@ -175,111 +202,19 @@
 					    <th class="detail"></th>
 				 	</tr>				  
 			  	</thead>
-			  	<tbody>
-			  		<tr style="display:none;"></tr>
-				  	<tr>
-					    <td class="produit top-strong">produit 1</td>
-					    <td class="column2 top-strong">Rien</td>
-					    <td class="column1 top-strong">3</td>
-					    <td class="column2 top-strong">4</td>
-					    <td class="column1 top-strong">5</td>
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-					    <td class="column2 top-strong">rien</td>
-					    <td class="column1 top-strong">rien</td>
-					    <td style="display:none"></td>
-					 </tr>
-
-					 <tr style="display:none;"></tr>
-					 <tr>
-					    <td class="produit">produit 2</td>
-					    <td class="column2"></td>
-					    <td class="column1">3</td>
-					    <td class="column2">4</td>
-					    <td class="column1">5</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td style="display:none"></td>
-					 </tr>	
-
-					 <tr style="display:none;"></tr>
-					 <tr>
-					    <td class="produit">produit 3</td>
-					    <td class="column2"></td>
-					    <td class="column1">3</td>
-					    <td class="column2">4</td>
-					    <td class="column1">5</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td style="display:none"></td>
-					 </tr>	
-
-					 <tr style="display:none;"></tr>
-					 <tr>
-					    <td class="produit">produit 4</td>
-					    <td class="column2"></td>
-					    <td class="column1">3</td>
-					    <td class="column2">4</td>
-					    <td class="column1">5</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td class="column2">rien</td>
-					    <td class="column1">rien</td>
-					    <td style="display:none" ></td>
-					 </tr>	
+			  	<tbody id="body" style="">
 			  	</tbody>
 			</table>
 
 	</div>
+
+	<script type="text/javascript">
+		var $table = $('.appTable');
+		$table.floatThead({
+			scrollingTop : function(){
+				return $('.top-bar').height();
+			},
+			//useAbsolutePositioning: false,
+			autoReflow:true,
+		});
+	</script>

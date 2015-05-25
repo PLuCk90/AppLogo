@@ -160,4 +160,13 @@ class Coordinator_c extends CI_Controller {
         if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
         $this->products_m->getMountingDropdown($code,$licence,$family,$theme);
     }
+
+    public function updateProductsByCoord($code,$theme,$licence,$family,$mounting)
+    {
+        if ($theme=='all'){$theme="";}else{$theme=" AND Thème = '".urldecode($theme)."' ";}
+        if ($licence=='all'){$licence="";}else{$licence=" AND Licence = '".urldecode($licence)."' ";}
+        if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
+        if ($mounting=='all'){$mounting="";}else{$mounting=" AND Montage = '".urldecode($mounting)."' ";}
+        $this->products_m->getProductsByCoord($code,$licence,$family,$theme,$mounting);
+    }
    }

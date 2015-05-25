@@ -3,16 +3,16 @@
 class Products_m extends CI_Model {
 
 
-  public function getAllProductsbyCoord($code)
+  public function getProductsByCoord($code,$licence,$family,$theme,$mounting)
   {
 	    $M3 = $this->load->database('m3_db',TRUE);
-	    $sql = "SELECT     Coordinateur, Licence, Thème, Famille, Montage, Référence, Désignation, Dépot, [Type article], SUM([Qté reste à facturer]) AS [Qté reste à facturer],
-	    SUM([Qté Back Order]) AS [Qté BO], [Période livraison]
+	    $sql = "SELECT     Coordinateur, Licence, Thème, Famille, Montage, Référence, Désignation, Dépot, [Type article] AS Type_article, SUM([Qté reste à facturer]) AS Qté_reste_à_facturer,
+	    SUM([Qté Back Order]) AS [Qté_BO], [Période livraison] AS Période_livraison
 	    FROM         dbo.[Portefeuille de commandes]
 	    GROUP BY Coordinateur, Licence, Thème, Famille, Montage, Référence, Désignation, Dépot, [Type article], [Période livraison]
-	    HAVING      ([Type article] = N'MONTURE') AND (Dépot = N'D01') AND Coordinateur = '".$code."'";
+	    HAVING      ([Type article] = N'MONTURE') AND (Dépot = N'D01') AND Coordinateur = '".$code."'".$theme.$family.$mounting.$licence.";";
 	    $query=$M3->query($sql); 
-	    return $query->result_array();
+	    echo json_encode($query->result_array());
   }
 
   public function getLicenceDropdown($code,$theme,$family,$mounting)
