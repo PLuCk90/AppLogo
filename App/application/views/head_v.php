@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/foundation-icons/foundation-icons.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/stylesheets/style.css" />
     <script src="<?php echo base_url();?>assets/bower_components/foundation/js/foundation.min.js"></script>
+	<link type="text/css" media="screen" rel="stylesheet" href="<?php echo base_url();?>assets/css/zurb-responsive-tables/responsive-tables.css" />
+	<script type="text/javascript" src="<?php echo base_url();?>assets/css/zurb-responsive-tables/responsive-tables.js"></script>
+
+
     <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
   <script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>

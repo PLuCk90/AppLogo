@@ -32,7 +32,7 @@ class management_c extends CI_Controller {
     	$this->load->view('head_v');
         $this->load->view('management/navMana_v');  
         $this->load->view('management/indexMana_v',$data);
-        $this->load->view('management/footerMana_v');
+        $this->load->view('admin/footerAdmin_v');
     }
 
 
@@ -50,7 +50,7 @@ class management_c extends CI_Controller {
         $data['languages']=$this->users_m->getAllLanguages();
         $this->load->view('management/navMana_v');  
         $this->load->view('management/accountUser_v',$data);
-        $this->load->view('management/footerMana_v');
+        $this->load->view('admin/footerAdmin_v');
     }
 
     public function validation_accountUser()

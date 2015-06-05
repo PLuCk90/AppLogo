@@ -33,7 +33,7 @@ class Coordinator_c extends CI_Controller {
     	$this->load->view('head_v');
         $this->load->view('coordinator/navCoord_v');  
         $this->load->view('coordinator/indexCoord_v',$data);
-        $this->load->view('coordinator/footerCoord_v');
+        $this->load->view('admin/footerAdmin_v');
     }
 
 
@@ -51,7 +51,7 @@ class Coordinator_c extends CI_Controller {
         $data['languages']=$this->users_m->getAllLanguages();
         $this->load->view('coordinator/navCoord_v');  
         $this->load->view('coordinator/accountUser_v',$data);
-        $this->load->view('coordinator/footerCoord_v');
+        $this->load->view('admin/footerAdmin_v');
     }
 
     public function validation_accountUser()
@@ -122,11 +122,15 @@ class Coordinator_c extends CI_Controller {
     }
 
     public function display_sales_forecast($data=null)
-    {
+    {   
+        $today = $this->products_m->getToday();
+        $data['mon'] = $today['mon'];
+        $data['month'] = $today['month'];
+        $data['year'] = $today['year'];
         $this->load->view('head_v');
         $this->load->view('coordinator/navCoord_v');  
         $this->load->view('coordinator/salesForecastTable_v',$data);
-        $this->load->view('coordinator/footerCoord_v');
+        $this->load->view('admin/footerAdmin_v');
     }
 
     public function updateLicences($code,$theme,$family,$mounting)
@@ -168,5 +172,18 @@ class Coordinator_c extends CI_Controller {
         if ($family=='all'){$family="";}else{$family=" AND Famille = '".urldecode($family)."' ";}
         if ($mounting=='all'){$mounting="";}else{$mounting=" AND Montage = '".urldecode($mounting)."' ";}
         $this->products_m->getProductsByCoord($code,$licence,$family,$theme,$mounting);
+        //$this->products_m->getForecastByCoord($code);
+    }
+
+    public function saveForecast($forecast,$user,$product,$date)
+    {
+        $data = array(
+            'amount_forecast' => $forecast ,
+            'M3_code_forecast' => $user,
+            'product_forecast' => $product,
+            'date_forecast' => $date,
+            'submit_date_forecast' => date("d-m-Y H:i")
+            );
+        $this->products_m->saveForecast($data);
     }
    }

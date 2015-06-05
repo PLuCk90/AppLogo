@@ -65,7 +65,7 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 $db['m3_db']['database'] = 'BPW_Datamarts';
-$db['m3_db']['hostname'] = '193.242.4.213';
+$db['m3_db']['hostname'] = '193.242.4.213' ;
 $db['m3_db']['username'] = 'sa';
 $db['m3_db']['password'] = 'Logo123';
 $db['m3_db']['dbdriver'] = 'sqlsrv';

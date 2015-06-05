@@ -2,6 +2,59 @@
 
 class Products_m extends CI_Model {
 
+  public function getToday()
+  {
+  	$today = getdate();
+  	$today = array(
+  		'mon' => $today['mon'],
+  		'month' => $today['month'],
+  		'year' => $today['year']
+  		 ); 
+  	return $today;
+  }
+
+  public function getLitteralMonth($num)
+  {
+  	switch ($num) {
+  		case '1':
+  			$month = lang('january');
+  			break;
+  		case '2':
+  			$month = lang('february');
+  			break;
+  		case '3':
+  			$month = lang('march');
+  			break;
+  		case '4':
+  			$month = lang('april');
+  			break;
+  		case '5':
+  			$month = lang('may');
+  			break;
+  		case '6':
+  			$month = lang('june');
+  			break;
+  		case '7':
+  			$month = lang('july');
+  			break;
+  		case '8':
+  			$month = lang('august');
+  			break;
+  		case '9':
+  			$month = lang('september');
+  			break;
+  		case '10':
+  			$month = lang('october');
+  			break;
+  		case '11':
+  			$month = lang('november');
+  			break;
+  		case '12':
+  			$month = lang('december');
+  			break;
+  	}
+  	return $month;
+  }
 
   public function getProductsByCoord($code,$licence,$family,$theme,$mounting)
   {
@@ -12,7 +65,29 @@ class Products_m extends CI_Model {
 	    GROUP BY Coordinateur, Licence, Thème, Famille, Montage, Référence, Désignation, Dépot, [Type article], [Période livraison]
 	    HAVING      ([Type article] = N'MONTURE') AND (Dépot = N'D01') AND Coordinateur = '".$code."'".$theme.$family.$mounting.$licence.";";
 	    $query=$M3->query($sql); 
-	    echo json_encode($query->result_array());
+	    $data1 = $query->result_array();
+
+	    $this->db->select('amount_forecast,product_forecast,date_forecast');
+	    $this->db->from('forecast');
+	    $this->db->where("m3_code_forecast", $code);
+	    $this->db->order_by('date_forecast', 'ASC');
+	    $query = $this->db->get();
+	    $data2 = $query->result_array();
+	    $data = array(
+	    	'products' => $data1 ,
+	    	'forecast' => $data2 
+	    	);
+	    echo json_encode($data);
+  }
+
+  public function getForecastbyCoord($code)
+  {
+  	$this->db->select('amount_forecast,product_forecast,date_forecast');
+     $this->db->from('forecast');
+     $this->db->where("m3_code_forecast", $code);
+     $this->db->order_by('date_forecast', 'ASC');
+     $query = $this->db->get();
+     echo json_encode($query->result()); 
   }
 
   public function getLicenceDropdown($code,$theme,$family,$mounting)
@@ -114,6 +189,14 @@ class Products_m extends CI_Model {
 	    ORDER BY Montage;";
 	    $query=$M3->query($sql); 
 	    return $query->result_array();
+  }
+
+  public function saveForecast($data)
+  {
+
+  		$this->db->insert("forecast",$data);
+  		echo json_encode($data);
+	   	
   }
 
 }

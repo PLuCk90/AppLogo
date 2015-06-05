@@ -57,5 +57,5 @@
 </div>
 <div class="row" style="max-width:100%;">
 <div class="small-12 medium-11 small-centered columns">
-<div class="small-12 columns panel" style="border:solid #C0C0C0 1px;padding:0;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
+<div data-equalizer class="small-12 columns panel" style="border:solid #C0C0C0 1px;padding:0;-moz-box-shadow: 2px 2px 10px 0px #656565;-webkit-box-shadow: 2px 2px 10px 0px #656565;-o-box-shadow: 2px 2px 10px 0px #656565;box-shadow: 2px 2px 10px 0px #656565;filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=10);">
                 

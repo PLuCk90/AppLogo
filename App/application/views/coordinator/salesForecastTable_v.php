@@ -64,13 +64,23 @@
 		background-color:#C9C9C9;
 		cursor:pointer;
 	}
+
+	.total{
+		background-color:#FFD2E9;
+	}
+
+	.totalHead{
+		background-color:#FBACF4;
+	}
 	}
 
 	</style>
 	<script type="text/javascript" style="display:none;">
     base_url = '<?=base_url();?>';
     all = '<?php print_r(lang("all"));?>';
-    M3_code = '<?php echo $this->session->userdata('id_M3');?>';
+    M3_code = '<?php echo $this->session->userdata('id_M3');?>'; 
+    mon = '<?php echo $mon;?>'; 
+    year = '<?php echo $year;?>'; 
 	</script>
 	<script src="<?php echo base_url();?>assets/js/salesforecast.js"></script>
 
@@ -156,50 +166,79 @@
 	<div  class="panel medium-12 small-6" style="min-height:47em;margin-bottom:0;">
 			<table class="appTable medium-12" style="border-top:black 1px solid;border-bottom:black 1px solid;">
 				<thead id="tableHead">
+				<tr>
+						<th rowspan="5"><?php echo lang('products_label');?></th>
+					    <th colspan="3" class="month"><?php echo $this->products_m->getLitteralMonth($mon); echo ' '.$year;?></th>
+					    <th colspan="3" class="month"><?php echo $this->products_m->getLitteralMonth($mon+1); echo ' '.$year;?></th>
+					    <th colspan="3" class="month" ><?php echo $this->products_m->getLitteralMonth($mon+2); echo ' '.$year;?></th>
+					    <th colspan="3" class="month" ><?php echo $this->products_m->getLitteralMonth($mon+3); echo ' '.$year;?></th>
+				</tr>
 				  <tr >
-					    <th rowspan="3" style="min-width:196px;"><?php echo lang('products_label');?></th>
-					    <th colspan="6" class="month">Maintenant</th>
-					    <th colspan="6" class="month">Mois+1</th>
-					    <th colspan="6" class="month" >Mois+2</th>
+					    
+					    <th class="totalHead" >Objectifs</th>
+					    <th class="totalHead">Prévisions</th>
+					    <th class="totalHead">Reste à faire</th>
+
+					    <th class="totalHead">Objectifs</th>
+					    <th class="totalHead">Prévisions</th>
+					    <th class="totalHead">Reste à faire</th>
+
+					    <th class="totalHead">Objectifs</th>
+					    <th class="totalHead">Prévisions</th>
+					    <th class="totalHead">Reste à faire</th>
+
+					    <th class="totalHead">Objectifs</th>
+					    <th class="totalHead">Prévisions</th>
+					    <th class="totalHead">Reste à faire</th>
+				  </tr>
+
+				   <tr >
+					    <th class="total"  id="objectiveM1"> - </th>
+					    <th class="total"  id="forecastM1"> - </th>
+					    <th class="total"  id="restM1"> - </th>
+
+
+					    <th class="total"  id="objectiveM1"> - </th>
+					    <th class="total"  id="forecastM1"> - </th>
+					    <th class="total"  id="restM1"> - </th>
+
+					    <th class="total"  id="objectiveM1"> - </th>
+					    <th class="total"  id="forecastM1"> - </th>
+					    <th class="total"  id="restM1"> - </th>
+
+					    <th class="total"  id="objectiveM1"> - </th>
+					    <th class="total"  id="forecastM1"> - </th>
+					    <th class="total"  id="restM1"> - </th>
+				  </tr>
+
+				  <tr>
+
+					    <th class="option" colspan="2"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option"><?php echo lang('forecast_label');?></th>
+
+					    <th class="option" colspan="1"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option" colspan="2"><?php echo lang('forecast_label');?></th>
+
+					    <th class="option" colspan="1"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option" colspan="2"><?php echo lang('forecast_label');?></th>
+
+					    <th class="option" colspan="1"><?php echo lang('backorder_label');?><br></th>
+					    <th class="option" colspan="2" ><?php echo lang('forecast_label');?></th>
 				  </tr>
 				  <tr>
 
-					    <th class="option"><?php echo lang('objective_label');?><br></th>
-					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
-					    <th class="option"><?php echo lang('rest_label');?><br></th>
-					    <th class="option"><?php echo lang('forecast_label');?></th>
-
-					    <th class="option"><?php echo lang('objective_label');?><br></th>
-					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
-					    <th class="option"><?php echo lang('rest_label');?><br></th>
-					    <th class="option"><?php echo lang('forecast_label');?></th>
-
-					    <th class="option"><?php echo lang('objective_label');?><br></th>
-					    <th class="option" colspan="3"><?php echo lang('backorder_label');?><br></th>
-					    <th class="option"><?php echo lang('rest_label');?><br></th>
-					    <th class="option"><?php echo lang('forecast_label');?></th>
-				  </tr>
-				  <tr>
-					    <th class="detail"></th>
 					    <th class="detail"><?php echo lang('quantity_label');?></th>
 						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
-						<th class="detail" style="min-width:78px;"><?php echo lang('delivery_label');?></th>
-					    <th class="detail"></th>
-					    <th class="detail"></th>
+					    <th class="option"></th>
 
-					    <th class="detail"></th>
 					    <th class="detail"><?php echo lang('quantity_label');?></th>
-						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
-						<th class="detail"><?php echo lang('delivery_label');?></th>
-					    <th class="detail"></th>
-					    <th class="detail"></th>
+					    <th class="option" colspan="2"></th>
 
-					    <th class="detail"></th>
 					    <th class="detail"><?php echo lang('quantity_label');?></th>
-						<th class="detail"><?php echo lang('quantity_BO_label');?></th>
-						<th class="detail"><?php echo lang('delivery_label');?></th>
-					    <th class="detail"></th>
-					    <th class="detail"></th>
+					    <th class="option" colspan="2"></th>
+
+					    <th class="detail"><?php echo lang('quantity_label');?></th>
+					    <th class="option" colspan="2"></th>
 				 	</tr>				  
 			  	</thead>
 			  	<tbody id="body" style="">

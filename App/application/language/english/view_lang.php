@@ -123,8 +123,22 @@ $lang['rest_label'] = "Rest";
 $lang['forecast_label'] = "Forecast";
 $lang['products_label'] = "Products";
 $lang['filter_alert_title'] = "Unable to search !";
-$lang['filter_alert_message'] = "Please select at least one filter";
+$lang['filter_alert_message'] = "Please select a licence";
 $lang['filter_alert_continue'] = "Ok";
 $lang['filter_alert_title2'] = "Too much elements !";
 $lang['filter_alert_message2'] = "Please select at least one more filter";
 $lang['filter_alert_continue2'] = "Ok";
+
+//--months
+$lang['january'] = "January";
+$lang['february'] = "February";
+$lang['march'] = "March";
+$lang['april'] = "April";
+$lang['may'] = "May";
+$lang['june'] = "June";
+$lang['july'] = "July";
+$lang['august'] = "August";
+$lang['september'] = "September";
+$lang['october'] = "October";
+$lang['november'] = "November";
+$lang['december'] = "December";

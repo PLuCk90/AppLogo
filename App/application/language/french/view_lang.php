@@ -125,8 +125,22 @@ $lang['rest_label'] = "Reste à faire";
 $lang['forecast_label'] = "Prévisions";
 $lang['products_label'] = "Produits";
 $lang['filter_alert_title'] = "Recherche impossible !";
-$lang['filter_alert_message'] = "Veuillez sélectionner au moins un filtre";
+$lang['filter_alert_message'] = "Veuillez sélectionner une licence";
 $lang['filter_alert_continue'] = "Ok";
 $lang['filter_alert_title2'] = "Trop d'éléments à afficher !";
 $lang['filter_alert_message2'] = "Veuillez séléctionner au moins un filtre de plus.";
 $lang['filter_alert_continue2'] = "Ok";
+
+//--months
+$lang['january'] = "Janvier";
+$lang['february'] = "Février";
+$lang['march'] = "Mars";
+$lang['april'] = "Avril";
+$lang['may'] = "Mai";
+$lang['june'] = "Juin";
+$lang['july'] = "Juillet";
+$lang['august'] = "Août";
+$lang['september'] = "Septembre";
+$lang['october'] = "Octobre";
+$lang['november'] = "November";
+$lang['december'] = "Décembre";

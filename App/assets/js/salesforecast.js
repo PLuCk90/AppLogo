@@ -105,7 +105,7 @@ function updateProducts(code){
     family = ($('#familyDrop').val()).trim();;
     mounting = ($('#mountingDrop').val()).trim();;
     productsTab = [];
-    if(licence == 'all' && theme =='all' && family=='all' && mounting == 'all')
+    if((licence == 'all' && theme =='all' && family=='all' && mounting == 'all') || licence=='all')
     {
         $('#alert-filter').foundation('reveal', 'open');
     }
@@ -117,12 +117,22 @@ function updateProducts(code){
     url: base_url + "index.php/coordinator_c/updateProductsByCoord/"+code+"/"+theme+"/"+licence+"/"+family+"/"+mounting,
     success: function(res){
         var obj = jQuery.parseJSON(res);
+        console.log(obj);
+        forecast = obj.forecast;
+        obj = obj.products;
         $('#body').html('');
         if(obj.length > 300){
             $('#alert-filter2').foundation('reveal', 'open');
         }else{
 
          $.each(obj, function(key,value) {
+            var thisProductForecast = [];
+            $.each(forecast, function(index,element)
+                {
+                    if((element.product_forecast).trim() == (value.Référence).trim()){
+                        thisProductForecast.push(element);       
+                }
+            });
             if((productsTab.indexOf(value.Référence.trim()) == -1))
             {
                 productsTab.push(value.Référence.trim());
@@ -136,30 +146,50 @@ function updateProducts(code){
                         "<li style=\"text-align:left;padding:5px;\" class=\"fi-play\"> "+value.Montage+"</li>"+
                         "<li style=\"text-align:left;padding:5px;\" class=\"fi-play\"> "+value.Dépot+"</li>"+
                         "</div>"+
-                        "</td>"+
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">"+parseInt(value.Qté_reste_à_facturer)+"</td>"+
+                        "</td>";
+                console.log(thisProductForecast);
+                
+                forecastM1='-';forecastM2='-';forecastM3='-';forecastM4='-';
+                if(thisProductForecast.length != 0)
+                {
+                        $.each(thisProductForecast,function(num,item){
+                            console.log(item.date_forecast);
+                            console.log(item.date_forecast == String(parseInt(mon)+0)+year);
+                            console.log(item.date_forecast == String(parseInt(mon)+1)+year);
+                            console.log(item.date_forecast == String(parseInt(mon)+2)+year);
+                            console.log(item.date_forecast == String(parseInt(mon)+3)+year);
+                            if(item.date_forecast == String(parseInt(mon)+0)+year){
+                                forecastM1 = item.amount_forecast;
+                            }
+                             if(item.date_forecast == String(parseInt(mon)+1)+year){
+                                forecastM2 = item.amount_forecast;
+                            }
+                             if(item.date_forecast == String(parseInt(mon)+2)+year){
+                                forecastM3 = item.amount_forecast;
+                            }
+                             if(item.date_forecast == String(parseInt(mon)+3)+year){
+                                forecastM4 = item.amount_forecast;
+                            }
+                        });
+                }
+                if(checkDelay(value.Période_livraison,0,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
+                var productM1 = "<td class=\"column1 top-strong\">"+quantite+"</td>"+
                         "<td class=\"column2 top-strong\">"+parseInt(value.Qté_BO)+"</td>"+
-                        "<td class=\"column1 top-strong\">"+dispDelay(String(parseInt(value.Période_livraison.trim())))+"</td>"+
-                        "<td class=\"column2 top-strong\" >Rien</td>"+
-                        "<td id=\"input"+value.Référence.trim()+"\" class=\"column1 top-strong forecast\" style=\"padding:0;\" onclick=\"displayInput('"+value.Référence.trim()+"')\"><input class=\"inputForecast\" id=\"forecast"+value.Référence.trim()+"\" onchange=\"saveForecast('"+M3_code+"','"+value.Référence.trim()+"')\" type=\"text\" style=\"margin:0;display:none;\"><span></span></td>"+
-
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
-
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
-                        "<td class=\"column2 top-strong\">rien</td>"+
-                        "<td class=\"column1 top-strong\">rien</td>"+
+                        "<td class=\"column1 top-strong\">"+forecastM1+"</td>";
+                if(checkDelay(value.Période_livraison,1,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
+                var productM2 =
+                        "<td class=\"column2 top-strong\">"+quantite+"</td>"+
+                        "<td class=\"column1 top-strong\" colspan=\"2\">"+forecastM2+"</td>";
+                if(checkDelay(value.Période_livraison,2,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
+                var productM3 =
+                        "<td class=\"column2 top-strong\">"+quantite+"</td>"+
+                        "<td class=\"column1 top-strong\" colspan=\"2\">"+forecastM3+"</td>";
+                if(checkDelay(value.Période_livraison,3,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
+                var productM4 = "<td class=\"column2 top-strong\">"+quantite+"</td>"+
+                        "<td colspan=\"2\" id=\"input"+value.Référence.trim()+"\" class=\"column1 top-strong forecast\" style=\"padding:0;\" onclick=\"displayInput('"+value.Référence.trim()+"')\"><input class=\"inputForecast\" id=\"forecast"+value.Référence.trim()+"\" onchange=\"saveForecast('"+M3_code+"','"+value.Référence.trim()+"')\" type=\"text\" style=\"margin:0;display:none;\"><span>"+forecastM4+"</span></td>"+
                         "<td style=\"display:none\"></td>"+
                      "</tr>";
-                $('#body').append(product);
+                $('#body').append(product+productM1+productM2+productM3+productM4);
             }
             else{
 
@@ -175,26 +205,41 @@ function updateProducts(code){
     }
 }
 
-function dispDelay(date)
+function checkDelay(date,offset,designation)
 {
-var year = date.substring(0,4);
-var month = date.substring(4);
-var date = month+"/"+year;
-return date;
+    currentMonth = parseInt(date.substring(4,6));
+    currentYear = date.substring(0,4);
+    month = parseInt(mon)+offset;
+    //console.log(designation);
+    //console.log(currentMonth + ' ' + currentYear );
+    if(offset==0 && (currentYear < year || (currentYear == year && currentMonth < month)))
+    {
+      //  console.log('BO true');
+        return true;
+    }
+   
+    if(year==currentYear && month==currentMonth)
+    {
+        //console.log('true');
+        return true;
+    }
+    //console.log('false');
+    return false;
 }
 
 
 function saveForecast(user,product)
 {
+    date = String(parseInt(mon)+3)+String(year);
     forecast = $('#forecast'+product).val();
     $.ajax({
     type: "GET",
-    url: base_url+"assets/js/saveForecast.php?forecast="+forecast+'&user='+M3_code+'&product='+product,
+    url : base_url+"index.php/coordinator_c/saveForecast/"+forecast+'/'+user+'/'+product+'/'+date,
     success: function(res){
         data = jQuery.parseJSON(res);
         console.log(data);
         $('#forecast'+product).css("display","none");
-        $('#input'+product+' span').html(data.forecast);
+        $('#input'+product+' span').html(data.amount_forecast);
     }});
 }
 
@@ -207,3 +252,4 @@ function displayInput(id)
     setTimeout(function(){$('#'+selector).focus(); },100);
 
 }
+
