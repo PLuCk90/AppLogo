@@ -117,21 +117,21 @@ function updateProducts(code){
     url: base_url + "index.php/coordinator_c/updateProductsByCoord/"+code+"/"+theme+"/"+licence+"/"+family+"/"+mounting,
     success: function(res){
         var obj = jQuery.parseJSON(res);
-        console.log(obj);
+        //console.log(obj);
         forecast = obj.forecast;
         obj = obj.products;
         $('#body').html('');
         if(obj.length > 300){
             $('#alert-filter2').foundation('reveal', 'open');
         }else{
-
          $.each(obj, function(key,value) {
             var thisProductForecast = [];
             $.each(forecast, function(index,element)
                 {
                     if((element.product_forecast).trim() == (value.Référence).trim()){
                         thisProductForecast.push(element);       
-                }
+                        }
+
             });
             if((productsTab.indexOf(value.Référence.trim()) == -1))
             {
@@ -147,17 +147,17 @@ function updateProducts(code){
                         "<li style=\"text-align:left;padding:5px;\" class=\"fi-play\"> "+value.Dépot+"</li>"+
                         "</div>"+
                         "</td>";
-                console.log(thisProductForecast);
+          //      console.log(thisProductForecast);
                 
                 forecastM1='-';forecastM2='-';forecastM3='-';forecastM4='-';
                 if(thisProductForecast.length != 0)
                 {
                         $.each(thisProductForecast,function(num,item){
-                            console.log(item.date_forecast);
-                            console.log(item.date_forecast == String(parseInt(mon)+0)+year);
-                            console.log(item.date_forecast == String(parseInt(mon)+1)+year);
-                            console.log(item.date_forecast == String(parseInt(mon)+2)+year);
-                            console.log(item.date_forecast == String(parseInt(mon)+3)+year);
+                            // console.log(item.date_forecast);
+                            // console.log(item.date_forecast == String(parseInt(mon)+0)+year);
+                            // console.log(item.date_forecast == String(parseInt(mon)+1)+year);
+                            // console.log(item.date_forecast == String(parseInt(mon)+2)+year);
+                            // console.log(item.date_forecast == String(parseInt(mon)+3)+year);
                             if(item.date_forecast == String(parseInt(mon)+0)+year){
                                 forecastM1 = item.amount_forecast;
                             }
@@ -175,18 +175,18 @@ function updateProducts(code){
                 if(checkDelay(value.Période_livraison,0,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
                 var productM1 = "<td class=\"column1 top-strong\">"+quantite+"</td>"+
                         "<td class=\"column2 top-strong\">"+parseInt(value.Qté_BO)+"</td>"+
-                        "<td class=\"column1 top-strong\">"+forecastM1+"</td>";
+                        "<td class=\"column1 top-strong readableForecastM1\">"+forecastM1+"</td>";
                 if(checkDelay(value.Période_livraison,1,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
                 var productM2 =
                         "<td class=\"column2 top-strong\">"+quantite+"</td>"+
-                        "<td class=\"column1 top-strong\" colspan=\"2\">"+forecastM2+"</td>";
+                        "<td class=\"column1 top-strong readableForecastM2\" colspan=\"2\">"+forecastM2+"</td>";
                 if(checkDelay(value.Période_livraison,2,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
                 var productM3 =
                         "<td class=\"column2 top-strong\">"+quantite+"</td>"+
-                        "<td class=\"column1 top-strong\" colspan=\"2\">"+forecastM3+"</td>";
+                        "<td class=\"column1 top-strong readableForecastM3\" colspan=\"2\">"+forecastM3+"</td>";
                 if(checkDelay(value.Période_livraison,3,value.Désignation)){quantite = parseInt(value.Qté_reste_à_facturer);}else{quantite="-";}
                 var productM4 = "<td class=\"column2 top-strong\">"+quantite+"</td>"+
-                        "<td colspan=\"2\" id=\"input"+value.Référence.trim()+"\" class=\"column1 top-strong forecast\" style=\"padding:0;\" onclick=\"displayInput('"+value.Référence.trim()+"')\"><input class=\"inputForecast\" id=\"forecast"+value.Référence.trim()+"\" onchange=\"saveForecast('"+M3_code+"','"+value.Référence.trim()+"')\" type=\"text\" style=\"margin:0;display:none;\"><span>"+forecastM4+"</span></td>"+
+                        "<td colspan=\"2\" id=\"input"+value.Référence.trim()+"\" class=\"column1 top-strong forecast readableForecastM4\" style=\"padding:0;\" onclick=\"displayInput('"+value.Référence.trim()+"')\"><input class=\"inputForecast\" id=\"forecast"+value.Référence.trim()+"\" onchange=\"saveForecast('"+M3_code+"','"+value.Référence.trim()+"');displayTotalForecast();\" type=\"text\" style=\"margin:0;display:none;\"><span>"+forecastM4+"</span></td>"+
                         "<td style=\"display:none\"></td>"+
                      "</tr>";
                 $('#body').append(product+productM1+productM2+productM3+productM4);
@@ -203,6 +203,34 @@ function updateProducts(code){
 
     }});
     }
+}
+
+function displayTotalForecast()
+{
+    setTimeout(function(){
+        var allForecast = 0
+        $('.readableForecastM1').each(function(){if($(this).html() != '-'){allForecast += parseInt($(this).html());}});
+        console.log('Total Forecast M1 : '+allForecast);
+        $('#forecastM1').html(allForecast);
+
+        var allForecast = 0
+        $('.readableForecastM2').each(function(){if($(this).html() != '-'){allForecast += parseInt($(this).html());}});
+        console.log('Total Forecast M2 : '+allForecast);
+        $('#forecastM2').html(allForecast);
+        
+
+        var allForecast = 0
+        $('.readableForecastM3').each(function(){if($(this).html() != '-'){allForecast += parseInt($(this).html());}});
+        console.log('Total Forecast M3 : '+allForecast);
+        $('#forecastM3').html(allForecast);
+        
+
+        var allForecast = 0
+        $('.readableForecastM4 span').each(function(){if($(this).html() != '-'){allForecast += parseInt($(this).html());}});
+        console.log('Total Forecast M4 : '+allForecast);
+        $('#forecastM4').html(allForecast);
+        
+    },1600);
 }
 
 function checkDelay(date,offset,designation)
@@ -252,4 +280,5 @@ function displayInput(id)
     setTimeout(function(){$('#'+selector).focus(); },100);
 
 }
+
 

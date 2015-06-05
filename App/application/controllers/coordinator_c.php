@@ -121,6 +121,29 @@ class Coordinator_c extends CI_Controller {
         $this->display_sales_forecast($data);
     }
 
+    public function objectives()
+    {
+        //print_r($this->session->all_userdata());
+        //$data['products'] = $this->products_m->getAllProductsbyCoord($this->session->userdata('id_M3'));
+        $data['licences'] = $this->products_m->getAllLicences($this->session->userdata('id_M3'));
+        $this->display_objectives($data);
+    }
+
+    public function display_objectives($data=null)
+    {   
+        $today = $this->products_m->getToday();
+        $data['mon'] = $today['mon'];
+        $data['month'] = $today['month'];
+        $data['year'] = $today['year'];
+        $data['rep'] = $this->products_m->getAllRep($this->session->userdata('id_M3')); 
+        $this->load->view('head_v');
+        $this->load->view('coordinator/navCoord_v');  
+        $this->load->view('coordinator/objectivesTable_v',$data);
+        $this->load->view('admin/footerAdmin_v');
+    }
+
+
+
     public function display_sales_forecast($data=null)
     {   
         $today = $this->products_m->getToday();

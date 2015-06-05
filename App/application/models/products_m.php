@@ -56,6 +56,14 @@ class Products_m extends CI_Model {
   	return $month;
   }
 
+  public function getAllRep($code)
+  {
+  		$M3 = $this->load->database('m3_db',TRUE);
+	    $sql = "SELECT  [nom représentant],[code représentant] FROM  dbo.[Portefeuille de commandes] GROUP BY Coordinateur, [nom représentant], [code représentant] HAVING Coordinateur = '".$code."' ORDER BY [nom représentant] ;";
+	    $query=$M3->query($sql);
+	    return $query->result_array();
+  }
+
   public function getProductsByCoord($code,$licence,$family,$theme,$mounting)
   {
 	    $M3 = $this->load->database('m3_db',TRUE);

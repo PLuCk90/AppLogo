@@ -12,7 +12,7 @@
 			  <section class="top-bar-section">
 				<ul class="left">
 	 		 			<li ><a class="fi-pricetag-multiple" href="<?php echo site_url('coordinator_c/sales_forecast'); ?>"> <?php echo lang('sales_forecast_label');?></a></li> 
-				 	
+				 		<li ><a class="fi-target" href="<?php echo site_url('coordinator_c/objectives'); ?>"> <?php echo lang('objective_label');?></a></li> 
 				</ul>
 				
 

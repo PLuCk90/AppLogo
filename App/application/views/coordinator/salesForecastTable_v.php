@@ -157,7 +157,7 @@
 				</div>
 
 				<div class="small-2 columns left" style="padding-top:1em">
-						<input type="submit" class="inline button small radius small-8" value="<?php echo lang('search_label');?>" onclick="updateProducts('<?php echo $this->session->userdata('id_M3');?>')">
+						<input type="submit" class="inline button small radius small-8" value="<?php echo lang('search_label');?>" onclick="updateProducts('<?php echo $this->session->userdata('id_M3');?>');displayTotalForecast();">
 				</div>
 			</div>
 
@@ -175,21 +175,21 @@
 				</tr>
 				  <tr >
 					    
-					    <th class="totalHead" >Objectifs</th>
-					    <th class="totalHead">Prévisions</th>
-					    <th class="totalHead">Reste à faire</th>
+					    <th class="totalHead" ><?php echo lang('objective_label');?></th>
+					    <th class="totalHead"><?php echo lang('forecast_label');?></th>
+					    <th class="totalHead"><?php echo lang('rest_label');?></th>
 
-					    <th class="totalHead">Objectifs</th>
-					    <th class="totalHead">Prévisions</th>
-					    <th class="totalHead">Reste à faire</th>
+					    <th class="totalHead"><?php echo lang('objective_label');?></th>
+					    <th class="totalHead"><?php echo lang('forecast_label');?></th>
+					    <th class="totalHead"><?php echo lang('rest_label');?></th>
 
-					    <th class="totalHead">Objectifs</th>
-					    <th class="totalHead">Prévisions</th>
-					    <th class="totalHead">Reste à faire</th>
+					    <th class="totalHead"><?php echo lang('objective_label');?></th>
+					    <th class="totalHead"><?php echo lang('forecast_label');?></th>
+					    <th class="totalHead"><?php echo lang('rest_label');?></th>
 
-					    <th class="totalHead">Objectifs</th>
-					    <th class="totalHead">Prévisions</th>
-					    <th class="totalHead">Reste à faire</th>
+					    <th class="totalHead"><?php echo lang('objective_label');?></th>
+					    <th class="totalHead"><?php echo lang('forecast_label');?></th>
+					    <th class="totalHead"><?php echo lang('rest_label');?></th>
 				  </tr>
 
 				   <tr >
@@ -198,17 +198,17 @@
 					    <th class="total"  id="restM1"> - </th>
 
 
-					    <th class="total"  id="objectiveM1"> - </th>
-					    <th class="total"  id="forecastM1"> - </th>
-					    <th class="total"  id="restM1"> - </th>
+					    <th class="total"  id="objectiveM2"> - </th>
+					    <th class="total"  id="forecastM2"> - </th>
+					    <th class="total"  id="restM2"> - </th>
 
-					    <th class="total"  id="objectiveM1"> - </th>
-					    <th class="total"  id="forecastM1"> - </th>
-					    <th class="total"  id="restM1"> - </th>
+					    <th class="total"  id="objectiveM3"> - </th>
+					    <th class="total"  id="forecastM3"> - </th>
+					    <th class="total"  id="restM3"> - </th>
 
-					    <th class="total"  id="objectiveM1"> - </th>
-					    <th class="total"  id="forecastM1"> - </th>
-					    <th class="total"  id="restM1"> - </th>
+					    <th class="total"  id="objectiveM4"> - </th>
+					    <th class="total"  id="forecastM4"> - </th>
+					    <th class="total"  id="restM4"> - </th>
 				  </tr>
 
 				  <tr>
